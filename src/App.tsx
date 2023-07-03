@@ -1,0 +1,14 @@
+import { StyledGlobalStyle } from "./styles/Global"
+import { StyledReset } from "./styles/Reset"
+
+
+export const App = () => {
+
+  return (
+    <>
+      <StyledReset />
+      <StyledGlobalStyle />
+      <h1>OLA GAMBAS</h1>
+    </>
+  )
+}
