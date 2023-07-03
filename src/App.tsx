@@ -8,7 +8,8 @@ export const App = () => {
     <>
       <StyledReset />
       <StyledGlobalStyle />
-      <h1>OLA GAMBAS</h1>
+      <h1>OLA GAMBAS asdasd</h1>
+      <h3>ALO ALO</h3>
     </>
   )
 }
