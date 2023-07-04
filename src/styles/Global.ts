@@ -16,13 +16,12 @@ export const StyledGlobalStyle = createGlobalStyle`
 `
 
 export const StyledButton = styled.button`
-    width: 182px;
-    height: 58px;
+    padding: 15px;
     border-radius: 255px;
     background: var(--color-blue);
 
     font-family: Montserrat;
-    font-size: 17px;
+    font-size: 1.063rem;
     font-weight: 700;
     line-height: 21px;
     color: var(--color-white);

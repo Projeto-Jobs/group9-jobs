@@ -9,7 +9,7 @@ export const App = () => {
     <>
       <StyledReset />
       <StyledGlobalStyle />
-      <RegisterPage />
+      <RegisterPage/>
     </>
   )
 }
