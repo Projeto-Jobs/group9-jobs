@@ -1,7 +1,7 @@
-import { ForwardedRef, forwardRef } from "react"
+import { ForwardedRef, InputHTMLAttributes, forwardRef } from "react"
 import { StyledInput, StyledInputField } from "./styles"
 
-interface IInputProps{
+interface IInputProps extends InputHTMLAttributes<HTMLInputElement>{
     label?: string;
 }
 
