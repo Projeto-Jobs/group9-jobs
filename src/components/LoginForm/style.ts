@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 
-export const SectionLoginStyle = styled.form`
+export const SectionLoginStyle = styled.section`
     display: flex;
     margin-left: 15%;
     align-items: center;
@@ -40,4 +40,27 @@ export const SpanButtonLogin = styled.span`
    width: 100%;
    justify-content: flex-end;
    margin-top: 10px;
+`
+
+export const SpanRegisterLoginStyle = styled.span`
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   margin-top: 15px;
+   gap: 2px;
+`
+
+export const PQuestionLoginStyle = styled.p`
+   font-size: 17px;
+   font-weight: 700;
+   font-family: Montserrat;
+   color: var(--color-black);
+`
+
+export const PRegisterLoginStyle = styled.p`
+   font-size: 17px;
+   font-weight: 700;
+   font-family: Montserrat;
+   color: var(--color-blue);
+   
 `
