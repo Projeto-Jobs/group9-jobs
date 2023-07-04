@@ -39,6 +39,9 @@ export const StyledInput = styled.input`
     font-size: 16px;
     font-weight: 700;
     line-height: 20px;
+<<<<<<< HEAD
+=======
 
     padding: 0 2.1875rem;
+>>>>>>> f248e85fc766ed0482c84a2616778896b05b9b9f
 `
