@@ -2,14 +2,11 @@ import { styled } from "styled-components"
 
 
 export const HeaderStyle = styled.header`
-   height: 58px;
    display: flex;
-   flex-direction: row;
-   margin-left: 15%;
-   margin-right: 15%;
    justify-content: space-between;
    align-items: center;
-   margin-top: 10px;
+   padding: 20px 0;
+   
 `
 
 export const DivHeader = styled.div`
