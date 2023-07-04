@@ -1,10 +1,16 @@
+import { ForwardedRef, forwardRef } from "react"
 import { StyledInput, StyledInputField } from "./styles"
 
-export const InputField = () => {
+interface IInputProps{
+    label?: string;
+}
+
+export const InputField = forwardRef(({label, ...rest}: IInputProps , ref: ForwardedRef<HTMLInputElement>) => {
     return (
         <StyledInputField>
-            <StyledInput type="text" />
+            {label ? <label>{label}</label> : null}
+            <StyledInput ref={ref} {...rest} />
             <span></span>
         </StyledInputField>
     )
-}
+})
