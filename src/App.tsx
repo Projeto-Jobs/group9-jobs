@@ -1,4 +1,4 @@
-import { RegisterPage } from "./pages/RegisterPage"
+import { RoutesMain } from "./routes/RoutesMain"
 import { StyledGlobalStyle } from "./styles/Global"
 import { StyledReset } from "./styles/Reset"
 
@@ -9,7 +9,7 @@ export const App = () => {
     <>
       <StyledReset />
       <StyledGlobalStyle />
-      <RegisterPage/>
+      <RoutesMain />
     </>
   )
 }
