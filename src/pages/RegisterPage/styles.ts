@@ -2,9 +2,8 @@ import styled from "styled-components"
 
 export const StyledRegisterPage = styled.div`
     max-width: 1328px;
-    height: 100%;;
-    margin: 0 auto;
-
+    margin: 1rem auto;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;

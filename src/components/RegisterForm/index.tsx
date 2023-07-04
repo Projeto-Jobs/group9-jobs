@@ -5,31 +5,35 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { validationFormSchema } from "./validationRegisterSchema"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
+import { RegisterContext } from "../../providers/RegisterContext"
 
 
 type TRegister = z.infer<typeof validationFormSchema>
 
 export const RegisterForm = () => {
+
+    const {registerUser} = useContext(RegisterContext)
+
+    const [showPassword, setShowPassword] = useState(false)
+
+    const [showConfirm, setShowConfirm] = useState(false)
+
     const { register, handleSubmit, formState: { errors } } = useForm<TRegister>({
         resolver: zodResolver(validationFormSchema)
     })
 
     const submit = (formData:TRegister) => {
-        console.log(formData);
+        registerUser(formData)
     }
-    console.log(errors);
-
-    const [showPassword, setShowPassword] = useState(false)
-    const [showConfirm, setShowConfirm] = useState(false)
 
     const IsShowingPass = () => {
         setShowPassword(!showPassword);
-     }
+    }
      const IsShowingConfi = () => {
         setShowConfirm(!showConfirm);
-     }
+    }
 
     return (
         <StyledRegisterForm onSubmit={handleSubmit(submit)} noValidate>

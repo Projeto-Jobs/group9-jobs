@@ -12,6 +12,9 @@ export const StyledGlobalStyle = createGlobalStyle`
     }
     #root {
         height: 100%;
+        max-width: 83rem;
+        margin: 0 auto;
+        padding: 0 1.25rem;
     }
 `
 
