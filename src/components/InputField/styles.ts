@@ -14,5 +14,4 @@ export const StyledInput = styled.input`
     font-size: 16px;
     font-weight: 700;
     line-height: 20px;
-
 `

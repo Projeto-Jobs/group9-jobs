@@ -1,26 +1,29 @@
 import LoginPicture from "../../assets/LoginPicture.svg"
 import { StyledButton } from "../../styles/Global"
-import { StyledTitle1 } from "../../styles/Typography"
-import { InputField } from "../InputField"
 import { Link } from "react-router-dom"
+import { ButtonEnterLogin, H1LoginStyle, InputLoginStyle, SectionLoginStyle, SpanButtonLogin } from "./style"
 
 export const LoginForm = () =>{
     return(
-        <section>
+        <SectionLoginStyle>
             <figure>
                 <img src={ LoginPicture } alt="" />
             </figure>
-            <form action="">
-                <StyledTitle1>Faça login</StyledTitle1>
-                <InputField/>
-                <InputField/>
-                <StyledButton>Entrar</StyledButton>
+            <form>
+                <H1LoginStyle>Faça login</H1LoginStyle>
+                <InputLoginStyle 
+                placeholder="E-mail"/>
+                <InputLoginStyle 
+                placeholder="Senha"/>
+                <SpanButtonLogin>
+                  <StyledButton>Entrar</StyledButton>
+                </SpanButtonLogin>
                 <p>Não possui cadastro? 
-                </p>
                 <Link to="/RegisterPage">
-                    <button>Ca</button>
+                    <p>Cadastre-se</p>
                 </Link>
+                </p>
             </form>
-        </section>
+        </SectionLoginStyle>
     )
 }
