@@ -1,3 +1,4 @@
+import { RegisterPage } from "./pages/RegisterPage"
 import { StyledGlobalStyle } from "./styles/Global"
 import { StyledReset } from "./styles/Reset"
 
@@ -8,8 +9,7 @@ export const App = () => {
     <>
       <StyledReset />
       <StyledGlobalStyle />
-      <h1>OLA GAMBAS asdasd</h1>
-      <h4>TESTANDOOOOO</h4>
+      <RegisterPage />
     </>
   )
 }
