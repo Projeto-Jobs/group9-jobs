@@ -1,4 +1,4 @@
-
+import { LoginPage } from "./pages/LoginPage"
 import { RegisterPage } from "./pages/RegisterPage"
 import { RegisterProvider } from "./providers/RegisterContext"
 import { StyledGlobalStyle } from "./styles/Global"
@@ -11,11 +11,11 @@ export const App = () => {
     <>
       <StyledReset />
       <StyledGlobalStyle />
+      <LoginPage/>
 
       <RegisterProvider>
-        <RegisterPage/>
+        <RegisterPage />
       </RegisterProvider>
-      
     </>
   )
 }
