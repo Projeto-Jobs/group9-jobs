@@ -3,11 +3,15 @@ import { StyledTitle1 } from "../../styles/Typography";
 import { StyledVacancyPage } from "./styles";
 import scopLensWhite from "../../assets/scopLens white.svg";
 import { StyledInput } from "../../components/InputField/styles";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { JobsListContext } from "../../providers/JobsListContext";
 
 export const VacancyPage = () => {
     const {jobsList} = useContext(JobsListContext);
+    const [searchValue, setSearchValue] = useState("");
+    const [filteredList, setFilteredList] = useState([]);
+    const [searchButtonClicked, setSearchButtonClicked] = useState(false);
+
   return (
     <StyledVacancyPage>
       <Header />
