@@ -8,7 +8,7 @@ export const StyledRegisterPage = styled.div`
     align-items: center;
     justify-content: center;
     position: relative;
-    > span {
+    #return{
         position: absolute;
         top: 0;
         left: 0;
