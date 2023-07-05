@@ -14,12 +14,12 @@ export const App = () => {
     <>
       <StyledReset />
       <StyledGlobalStyle />
-
+{/* 
       <LoginPage/>
 
       <RegisterProvider>
         <RegisterPage />
-      </RegisterProvider>
+      </RegisterProvider> */}
 
       <JobsListProvider>
         <RoutesMain />
