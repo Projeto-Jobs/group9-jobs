@@ -1,5 +1,8 @@
 import React, { Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from "react"
 import { ApplicationsContext } from "../../providers/ModalContext"
+import { ModalStyled } from "./styles";
+import { StyledButton } from "../../styles/Global";
+import imgButton from "../../assets/buttonClose.svg"
 
 interface Application {
   jobId: number;
@@ -71,28 +74,35 @@ export const ModalRegister: React.FC<ModalRegisterProps> = ({ isOpen, onClose })
 
   if (isOpen) {
     return (
-      <div ref={modalRef}>
-        <form onSubmit={handleSubmit}>
-          <h2>Cadastre-se</h2>
-          <p>Você está se candidatando para desenvolvedor na Kenzie Academy Brasil</p>
-          <input placeholder="Name"
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange} />
-          <input placeholder="Email"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange} />
-          <input placeholder="Linkedin"
-            type="text"
-            name="linkedin"
-            value={formData.linkedin}
-            onChange={handleChange} />
-          <button type="submit">Cadastre - se</button>
-        </form>
-      </div>
+      <ModalStyled ref={modalRef}>
+        <div className="container">
+          <header>
+            <img onClick={handleClose} src={imgButton} alt="" />
+            <h2>Cadastre-se</h2>
+            <p>Você está se candidatando para <strong>Desenvolvedor front-end </strong> na empresa <strong>Kenzie Academy Brasil</strong></p>
+          </header>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <input placeholder="Name"
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange} />
+              <input placeholder="Email"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange} />
+              <input placeholder="Linkedin"
+                type="text"
+                name="linkedin"
+                value={formData.linkedin}
+                onChange={handleChange} />
+            </div>
+            <StyledButton type="submit">Cadastre - se</StyledButton>
+          </form>
+        </div>
+      </ModalStyled>
     )
   }
   return null
