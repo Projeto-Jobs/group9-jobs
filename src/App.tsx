@@ -1,6 +1,6 @@
+import { ListCompany } from "./pages/HomePage"
 import { StyledGlobalStyle } from "./styles/Global"
 import { StyledReset } from "./styles/Reset"
-
 
 export const App = () => {
 
@@ -8,8 +8,8 @@ export const App = () => {
     <>
       <StyledReset />
       <StyledGlobalStyle />
-      <h1>OLA GAMBAS asdasd</h1>
-      <h4>ALO ALO</h4>
+      <ListCompany list={[]}/>
+
     </>
   )
 }
