@@ -22,3 +22,54 @@ export const StyledTitle3 = styled.h3`
     line-height: 25.6px;
     ${TitleStyles}
 `
+
+interface IStyledTextProps{
+    textStyle: "paragraph" | "paragraphBold" | "boldAlert" | "menu" | "label";
+}
+
+export const StyledText = styled.p<IStyledTextProps>`
+    ${({textStyle}) => {
+        switch (textStyle) {
+            case 'paragraph':
+                return css`
+                    font-family: Inter;
+                    font-size: 18px;
+                    font-weight: 400;
+                    line-height: 36px;
+                    color: var(--color-black);
+                `
+            case 'paragraphBold':
+                return css`
+                    font-family: Inter;
+                    font-size: 18px;
+                    font-weight: 700;
+                    line-height: 36px;
+                    color: var(--color-black);
+                `
+            case 'boldAlert':
+                return css`
+                    font-family: Montserrat;
+                    font-size: 16px;
+                    font-weight: 700;
+                    line-height: 20px;
+                    color: var(--color-black);
+                `
+            case 'menu':
+                return css`
+                    font-family: Montserrat;
+                    font-size: 16px;
+                    font-weight: 700;
+                    line-height: 20px;
+                    color: var(--color-black);
+                `
+            case 'label':
+                return css`
+                    font-family: Montserrat;
+                    font-size: 17px;
+                    font-weight: 400;
+                    line-height: 21px;
+                    color: var(--color-blue);
+                `
+        }
+    }}
+`
