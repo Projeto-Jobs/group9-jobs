@@ -74,7 +74,7 @@ export const ListCompany = () => {
                                 <h3>{job.position}</h3>
                             </div>
                             </div>
-                            {/* <StyledButton onClick={openModal}>Cadastre-se</StyledButton> */}
+                            <StyledButton onClick={openModal}>Cadastre-se</StyledButton>
                         </div>
                         <div>
                             {showParagraph && (
