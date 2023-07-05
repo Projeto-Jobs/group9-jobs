@@ -6,6 +6,7 @@ export const StyledVacancyPage = styled.div`
 
 
   > h1 {
+    text-align: center;
     margin-top: 18rem;
     color: var(--color-blue);
   }
@@ -15,6 +16,7 @@ export const StyledVacancyPage = styled.div`
     font-family: Montserrat;
     font-weight: 700;
     margin-top: 3.25rem;
+    text-align: center;
   }
 
   >div{
@@ -22,6 +24,7 @@ export const StyledVacancyPage = styled.div`
     width: 628px;
     gap: 1.25rem;
     margin-top: 1.25rem;
+    align-self: center;
 
     >figure{
         width: 66px;
@@ -36,5 +39,8 @@ export const StyledVacancyPage = styled.div`
             cursor: pointer;
         }
     }
+  }
+  >section{
+    align-self: center;
   }
 `;
