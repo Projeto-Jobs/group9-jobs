@@ -6,6 +6,7 @@ import { RoutesMain } from "./routes/RoutesMain"
 import { RegisterPage } from "./pages/RegisterPage"
 import { RegisterProvider } from "./providers/RegisterContext"
 import { ListCompany } from "./pages/HomePage"
+import { LoginProvider } from "./providers/LoginContext"
 
 
 
@@ -16,8 +17,11 @@ export const App = () => {
       
       <StyledReset />
       <StyledGlobalStyle />
-
+     
+     <LoginProvider>
       <LoginPage/>
+     </LoginProvider>
+
 
       <RegisterProvider>
         <RegisterPage />

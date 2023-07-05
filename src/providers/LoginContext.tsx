@@ -1,6 +1,6 @@
 import { createContext, useState } from "react"
-import { api } from "../services/api";
-
+import { api } from "../services/api"
+import { useNavigate } from "react-router-dom"
 
 
 interface ILoginProviderProps{
@@ -24,27 +24,34 @@ interface ILoginContext{
     userLogout: () => void;
 }
 
+interface IUser{
+    email: string;
+    password: string;
+}
+
 export const LoginContext = createContext({} as ILoginContext)
 
 export const LoginProvider = ({children}: ILoginProviderProps) =>{
     const [ login, setUserLogin] = useState<ILoginUser | null>(null)
     
-    const userLogin = async (formData: any) =>{
+    const navigate = useNavigate()
+    const userLogin = async (formData: IUser) =>{
         try {
             const { data } = await api.post<IUserLoginResponse>('/login', formData)
-            console.log(data)
             setUserLogin(data.user)
             localStorage.setItem("@Jobs:token", data.accessToken)
+            localStorage.setItem("@Jobs:userId", JSON.stringify(data.user.id))
+            navigate("/AdminPage")
         } catch (error) {
-            console.log(error)
+            alert("Usuário inválido")
         }
     }
 
     const userLogout = () =>{
         setUserLogin(null)
         localStorage.removeItem("@Jobs:token")
+        localStorage.removeItem("@Jobs:userId")
     }
-
 
     return(
         <LoginContext.Provider value={ {login, userLogin, userLogout} }>
