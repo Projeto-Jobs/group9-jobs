@@ -8,7 +8,7 @@ import { RegisterProvider } from "../providers/RegisterContext";
 export const RoutesMain = () => {
   return (
     <Routes>
-      <Route path="/" element={<ListCompany list={[]} />} />
+      <Route path="/" element={<ListCompany/>} />
       <Route path="/VacancyPage" element={<VacancyPage />} />
       <Route path="/LoginPage" element={<LoginPage />} />
 
