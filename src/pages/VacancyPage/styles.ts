@@ -4,10 +4,11 @@ export const StyledVacancyPage = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 1328px;
+  min-height: 100vh;
+  justify-content: center;
 
   > h1 {
     text-align: center;
-    margin-top: 18rem;
     color: var(--color-blue);
   }
   > p {
