@@ -7,6 +7,12 @@ export interface IJob {
   position: string;
   sallary: number;
   description: string;
+  user: {
+    email: string;
+    password: string;
+    name: string;
+    id: number;
+  };
 }
 
 interface IJobsListProviderProps {
@@ -24,12 +30,12 @@ export const JobsListProvider = ({ children }: IJobsListProviderProps) => {
 
   useEffect(() => {
     const loadJobs = async () => {
-        try {
-          const { data } = await api.get(`/jobs`);
-          setJobsList(data);
-        } catch (error) {
-            console.log(error);
-        }
+      try {
+        const { data } = await api.get(`/jobs?_expand=user`);
+        setJobsList(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
     loadJobs();
   }, []);
