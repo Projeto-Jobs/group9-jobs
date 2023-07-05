@@ -11,9 +11,15 @@ export const RoutesMain = () => {
       <Route path="/" element={<ListCompany list={[]} />} />
       <Route path="/VacancyPage" element={<VacancyPage />} />
       <Route path="/LoginPage" element={<LoginPage />} />
-      <RegisterProvider>
-        <Route path="/RegisterPage" element={<RegisterPage />} />
-      </RegisterProvider>
+
+      <Route
+        path="/RegisterPage"
+        element={
+          <RegisterProvider>
+            <RegisterPage />
+          </RegisterProvider>
+        }
+      />
     </Routes>
   );
 };
