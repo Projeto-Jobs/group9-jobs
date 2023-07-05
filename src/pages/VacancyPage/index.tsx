@@ -9,10 +9,9 @@ import { IJob, JobsListContext } from "../../providers/JobsListContext";
 import { JobDropDown } from "../../components/JobDropDown";
 
 export const VacancyPage = () => {
-  const { jobsList } = useContext(JobsListContext);
+  const { jobsList, setFilteredList, filteredList } = useContext(JobsListContext);
   const [searchValue, setSearchValue] = useState("");
   const [displayText, setDisplayText] = useState("");
-  const [filteredList, setFilteredList] = useState<IJob[]>([]);
   const [searchButtonClicked, setSearchButtonClicked] = useState(false);
 
   const filterJobs = () => {

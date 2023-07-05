@@ -14,7 +14,7 @@ export const JobDropDown = () => {
     setShowParagraph(!showParagraph);
   };
   return (
-    <StyledJobDropDown>
+    <StyledJobDropDown >
       <div>
         {showButton ? (
           <img onClick={modifyButton} src={imgMinus} alt="" />
