@@ -1,15 +1,29 @@
+import { LoginPage } from "./pages/LoginPage"
 import { StyledGlobalStyle } from "./styles/Global"
 import { StyledReset } from "./styles/Reset"
+import { JobsListProvider } from "./providers/JobsListContext"
+import { RoutesMain } from "./routes/RoutesMain"
+import { RegisterPage } from "./pages/RegisterPage"
+import { RegisterProvider } from "./providers/RegisterContext"
+
+
 
 
 export const App = () => {
-
   return (
     <>
       <StyledReset />
       <StyledGlobalStyle />
-      <h1>OLA GAMBAS asdasd</h1>
-      <h3>ALO ALO</h3>
+{/* 
+      <LoginPage/>
+
+      <RegisterProvider>
+        <RegisterPage />
+      </RegisterProvider> */}
+
+      <JobsListProvider>
+        <RoutesMain />
+      </JobsListProvider>
     </>
   )
 }

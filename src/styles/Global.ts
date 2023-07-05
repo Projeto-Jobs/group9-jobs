@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, styled } from 'styled-components'
 
 export const StyledGlobalStyle = createGlobalStyle`
     :root {
@@ -7,4 +7,26 @@ export const StyledGlobalStyle = createGlobalStyle`
         --color-white: #ffffff;
         --color-lightblue: #f9f9ff;
     }
+    body {
+        height: 100Vh;
+    }
+    #root {
+        height: 100%;
+        max-width: 83rem;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+    }
+`
+
+export const StyledButton = styled.button`
+    padding: 15px;
+    border-radius: 255px;
+    background: var(--color-blue);
+
+    font-family: Montserrat;
+    font-size: 1.063rem;
+    font-weight: 700;
+    line-height: 21px;
+    color: var(--color-white);
+    align-self: flex-end;
 `
