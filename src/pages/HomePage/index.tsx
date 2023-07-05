@@ -4,7 +4,6 @@ import imgMinus from "../../assets/plus.svg"
 import imgMax from "../../assets/minus.svg"
 import { JobsListContext } from "../../providers/JobsListContext"
 import { StyledHome } from "./styles"
-import { Header } from "../../components/Header"
 import { StyledButton } from "../../styles/Global"
 
 export const ListCompany = () => {
@@ -22,10 +21,11 @@ export const ListCompany = () => {
 
     return (
         <div>
-        <Header/>
         <StyledHome>
             <div>
-                <h1>Trabalho é na Jobs</h1>
+                <div>
+                    <h1>Trabalho é na Jobs</h1>
+                </div>
             </div>
             <section>
                 <div>
@@ -59,7 +59,7 @@ export const ListCompany = () => {
                                 <img onClick={modifyButton} src={imgMax} alt="" />
                             )}
                             <div>
-                                <h4>Kenzie Academy Brasil</h4>
+                                <h4>{job.user.name}</h4>
                                 <h3>{job.position}</h3>
                             </div>
                             </div>
@@ -79,5 +79,4 @@ export const ListCompany = () => {
 
     )
 }
-
 
