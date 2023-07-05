@@ -1,15 +1,17 @@
 import { StyledJobDropDown } from "./styles";
 import imgMinus from "../../assets/plus.svg";
 import imgMax from "../../assets/minus.svg";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import { StyledTitle3 } from "../../styles/Typography";
 import { IJob } from "../../providers/JobsListContext";
+import { ModalRegister } from "../ModalRegister/modal";
 
 interface IDropDownProps {
   item: IJob;
+  setModal: React.Dispatch<SetStateAction<boolean>>;
 }
 
-export const JobDropDown = ({ item }: IDropDownProps) => {
+export const JobDropDown = ({ item, setModal }: IDropDownProps) => {
   const [showButton, setShowButton] = useState(true);
 
   const [showParagraph, setShowParagraph] = useState(false);
@@ -18,6 +20,8 @@ export const JobDropDown = ({ item }: IDropDownProps) => {
     setShowButton(!showButton);
     setShowParagraph(!showParagraph);
   };
+
+  
   return (
     <StyledJobDropDown>
       <div>
@@ -30,9 +34,10 @@ export const JobDropDown = ({ item }: IDropDownProps) => {
           <span>{item.user.name}</span>
           <StyledTitle3>{item.position}</StyledTitle3>
         </div>
-        <button>Candidatar-se</button>
+        <button onClick={() => setModal(true)}>Candidatar-se</button>
       </div>
       {showParagraph && <p>{item.description}</p>}
+      
     </StyledJobDropDown>
   );
 };
