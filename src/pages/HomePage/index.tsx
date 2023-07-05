@@ -21,8 +21,6 @@ export const ListCompany = ({}: IListProps) => {
         setShowParagraph(!showParagraph)
     }
 
-
-
     return (
         <StyledHome>
             <div>
