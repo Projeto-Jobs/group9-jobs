@@ -4,8 +4,7 @@ export const StyledHome = styled.div`
     margin-bottom: 40px;
     
     >div:nth-child(1){
-        padding: 0 10%;
-        width: 1728px;
+        width: 100%;
         height: 206px;
         background-color: var(--color-blue);
         color: var(--color-white);
@@ -13,26 +12,25 @@ export const StyledHome = styled.div`
         align-items: center;
         font-size: 30px;
     }
-
-    section:first-of-type > div:nth-child(1) {
-        padding: 0 10%;
-        display: flex;
-        margin-top: 60px;
-        justify-content: space-between;
+        section:first-of-type > div:nth-child(1) {
+            display: flex;
+            padding: 60px 0px 0px 0px;
+            justify-content: space-between;
         h2{
-        font-size: 40px;
-        color: var(--color-blue);
+            font-size: 40px;
+            color: var(--color-blue);
             }
         p{
-        width: 650px;
-        margin-top: 60px;
-        font-size: 20px;
-            }
+            max-width: 650px;
+            margin-top: 60px;
+            font-size: 20px;
+        }
     }
 
     section:first-of-type > div:nth-child(1) > div:nth-child(2){
         img{
-        width: 570px;
+            max-width: 570px;
+            height: fit-content;
        
         }
     }
