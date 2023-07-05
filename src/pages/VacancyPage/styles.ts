@@ -3,10 +3,12 @@ import { styled } from "styled-components";
 export const StyledVacancyPage = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 1328px;
+  min-height: 100vh;
+  justify-content: center;
 
   > h1 {
     text-align: center;
-    margin-top: 18rem;
     color: var(--color-blue);
   }
   > p {
@@ -30,7 +32,7 @@ export const StyledVacancyPage = styled.div`
     }
 
     > figure {
-      width: 66px;
+      min-width: 66px;
       height: 66px;
       background-color: var(--color-blue);
       display: flex;
@@ -44,13 +46,18 @@ export const StyledVacancyPage = styled.div`
     }
   }
   > section {
+    width: 63%;
     align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     > p {
       margin-top: 43px;
     }
     > ul {
       margin-top: 3rem;
+      width: 100%;
     }
   }
 `;

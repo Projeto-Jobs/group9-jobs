@@ -2,6 +2,7 @@ import jobs from "../../assets/jobs.svg"
 import scopLensBlue from "../../assets/scopLens blue.svg"
 import { StyledButton } from "../../styles/Global"
 import { ButtonHeader, DivHeader, HeaderStyle } from "./styles"
+import { Link } from "react-router-dom"
 
 export const Header = () =>{
     return(
@@ -10,9 +11,15 @@ export const Header = () =>{
                 <img src={ jobs } alt="" />
             </figure>
             <DivHeader>
-                <ButtonHeader>acesso empresa</ButtonHeader>
-                <StyledButton>Confira nossas vagas</StyledButton>
-                <ButtonHeader><img src={ scopLensBlue } alt="" /></ButtonHeader>
+                <Link to="/LoginPage">
+                    <ButtonHeader>acesso empresa</ButtonHeader>
+                </Link>
+                <Link to="/">
+                    <StyledButton>Confira nossas vagas</StyledButton>
+                </Link>
+                <Link to="/VacancyPage">
+                    <ButtonHeader><img src={ scopLensBlue } alt="" /></ButtonHeader>
+                </Link>
             </DivHeader>
         </HeaderStyle>
     )
