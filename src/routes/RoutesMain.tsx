@@ -6,6 +6,7 @@ import { RegisterPage } from "../pages/RegisterPage";
 import { RegisterProvider } from "../providers/RegisterContext";
 import { Administration } from "../pages/AdminPage";
 import { ApplicationProvider } from "../providers/ModalContext";
+import { LoginProvider } from "../providers/LoginContext";
 
 export const RoutesMain = () => {
   return (
@@ -16,7 +17,15 @@ export const RoutesMain = () => {
         </ApplicationProvider>
       }/>
       <Route path="/VacancyPage" element={<VacancyPage/>}/>
-      <Route path="/LoginPage" element={<LoginPage/>}/>
+      
+      <Route 
+      path="/LoginPage" 
+      element={
+      <LoginProvider>
+        <LoginPage/>
+      </LoginProvider>
+      }/>
+      
       <Route path="/AdminPage" element={<Administration/>}/>
 
       <Route
