@@ -48,14 +48,12 @@ export const VacancyPage = () => {
             </p>
             <ul>
               {filteredList.map((job) => (
-                <li key={job.id}>
-                  <h3>{job.position}</h3>
-                </li>
+                <JobDropDown key={job.id} item={job}/>
               ))}
             </ul>
           </>
         ) : null}
-        <JobDropDown/>
+        
         {searchButtonClicked && filteredList.length == 0 ? (
           <img src={emptyListImg} alt="Nenhum resultado foi encontrado" />
         ) : null}
