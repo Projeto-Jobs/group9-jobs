@@ -2,18 +2,23 @@ import LoginPicture from "../../assets/LoginPicture.svg"
 import { StyledButton } from "../../styles/Global"
 import { Link } from "react-router-dom"
 import { H1LoginStyle, InputLoginStyle, PQuestionLoginStyle, PRegisterLoginStyle, SectionLoginStyle, SpanButtonLogin, SpanRegisterLoginStyle } from "./style"
-import {  useForm, SubmitHandler } from "react-hook-form";
+import {  useForm, SubmitHandler } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { TLogin, loginFormSchema } from "./loginFormSchema";
+import { TLogin, loginFormSchema } from "./loginFormSchema"
+import { useContext } from "react"
+import { LoginContext } from "../../providers/LoginContext"
 
 
 export const LoginForm = () =>{
     const { register, handleSubmit, formState: { errors }} = useForm<TLogin>({
         resolver: zodResolver(loginFormSchema)
     })
+
+    const {userLogin} = useContext(LoginContext)
     
-    const submit: SubmitHandler<TLogin> = (formData) =>{
+    const submit: SubmitHandler<TLogin> = async (formData) =>{
         console.log(formData)
+        userLogin(formData)
     }
     
     return(
