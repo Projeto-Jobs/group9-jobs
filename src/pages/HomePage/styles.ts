@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 
 export const StyledHome = styled.div`
     margin-bottom: 40px;
+    font-family: Montserrat;
     
     >div:nth-child(1){
         width: 100%;

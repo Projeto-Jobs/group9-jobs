@@ -1,15 +1,14 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import img from "../../assets/HomePicture.svg"
 import imgMinus from "../../assets/plus.svg"
 import imgMax from "../../assets/minus.svg"
-
-import { ICompany } from "./homeContext"
+import { JobsListContext } from "../../providers/JobsListContext"
 import { StyledHome } from "./styles"
-interface IListProps {
-    list: ICompany[]
-}
+import { StyledButton } from "../../styles/Global"
 
-export const ListCompany = ({ }: IListProps) => {
+export const ListCompany = () => {
+
+    const {jobsList} = useContext(JobsListContext)
 
     const [showButton, setShowButton] = useState(true)
 
@@ -21,6 +20,7 @@ export const ListCompany = ({ }: IListProps) => {
     }
 
     return (
+        <div>
         <StyledHome>
             <div>
                 <div>
@@ -49,31 +49,34 @@ export const ListCompany = ({ }: IListProps) => {
                     <h2>Confira nossas vagas</h2>
                 </div>
                 <ul>
-                    <li>
+                {jobsList.map((job) => (
+                    <li key={job.id}>
                         <div>
                             <div>
-                                {showButton ? (
-                                    <img onClick={modifyButton} src={imgMinus} alt="" />
-                                ) : (
-                                    <img onClick={modifyButton} src={imgMax} alt="" />
-                                )}
-                                <div>
-                                    <h4>Kenzie Academy Brasil</h4>
-                                    <h3>Desenvolverdor junior </h3>
-                                </div>
+                            {showButton ? (
+                                <img onClick={modifyButton} src={imgMinus} alt="" />
+                            ) : (
+                                <img onClick={modifyButton} src={imgMax} alt="" />
+                            )}
+                            <div>
+                                <h4>{job.user.name}</h4>
+                                <h3>{job.position}</h3>
                             </div>
-                            <button>Cadastre-se</button>
+                            </div>
+                            <StyledButton>Cadastre-se</StyledButton>
                         </div>
                         <div>
                             {showParagraph && (
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quos ipsa incidunt
-                                    minima in quo necessitatibus blanditiis molestias reprehenderit modi! Reiciendis
-                                    voluptatum odio vero explicabo aperiam quos velit impedit. Facilis!</p>
+                                <p>{job.description}</p>
                             )}
                         </div>
                     </li>
+                ))}
                 </ul>
             </section>
         </StyledHome>
+        </div>
+
     )
 }
+
