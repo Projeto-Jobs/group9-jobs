@@ -21,12 +21,15 @@ interface IJobsListProviderProps {
 
 interface IJobsListContext {
   jobsList: IJob[];
+  filteredList: IJob[];
+  setFilteredList: React.Dispatch<React.SetStateAction<IJob[]>>;
 }
 
 export const JobsListContext = createContext({} as IJobsListContext);
 
 export const JobsListProvider = ({ children }: IJobsListProviderProps) => {
   const [jobsList, setJobsList] = useState<IJob[]>([]);
+  const [filteredList, setFilteredList] = useState<IJob[]>([]);
 
   useEffect(() => {
     const loadJobs = async () => {
@@ -40,7 +43,9 @@ export const JobsListProvider = ({ children }: IJobsListProviderProps) => {
     loadJobs();
   }, []);
   return (
-    <JobsListContext.Provider value={{ jobsList }}>
+    <JobsListContext.Provider
+      value={{ jobsList, filteredList, setFilteredList }}
+    >
       {children}
     </JobsListContext.Provider>
   );
