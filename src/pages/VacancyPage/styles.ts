@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 export const StyledVacancyPage = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 1328px;
 
   > h1 {
     text-align: center;
@@ -44,6 +45,7 @@ export const StyledVacancyPage = styled.div`
     }
   }
   > section {
+    width: 63%;
     align-self: center;
 
     > p {

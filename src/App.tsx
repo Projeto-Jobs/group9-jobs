@@ -12,16 +12,16 @@ import { ListCompany } from "./pages/HomePage"
 export const App = () => {
   return (
     <>
-      <ListCompany />
+      {/* <ListCompany list={[]} /> */}
       
       <StyledReset />
       <StyledGlobalStyle />
 
-      <LoginPage/>
+      {/* <LoginPage/>
 
       <RegisterProvider>
         <RegisterPage />
-      </RegisterProvider>
+      </RegisterProvider> */}
 
       <JobsListProvider>
         <RoutesMain />

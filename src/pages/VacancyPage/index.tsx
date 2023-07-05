@@ -6,6 +6,7 @@ import emptyListImg from "../../assets/empty.svg";
 import { StyledInput } from "../../components/InputField/styles";
 import { SetStateAction, useContext, useState } from "react";
 import { IJob, JobsListContext } from "../../providers/JobsListContext";
+import { JobDropDown } from "../../components/JobDropDown";
 
 export const VacancyPage = () => {
   const { jobsList } = useContext(JobsListContext);
@@ -55,6 +56,7 @@ export const VacancyPage = () => {
             </ul>
           </>
         ) : null}
+        <JobDropDown/>
         {searchButtonClicked && filteredList.length == 0 ? (
           <img src={emptyListImg} alt="Nenhum resultado foi encontrado" />
         ) : null}
