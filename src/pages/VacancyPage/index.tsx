@@ -4,7 +4,7 @@ import scopLensWhite from "../../assets/scopLens white.svg";
 import emptyListImg from "../../assets/empty.svg";
 import { StyledInput } from "../../components/InputField/styles";
 import { SetStateAction, useContext, useState } from "react";
-import { IJob, JobsListContext } from "../../providers/JobsListContext";
+import { JobsListContext } from "../../providers/JobsListContext";
 import { JobDropDown } from "../../components/JobDropDown";
 
 export const VacancyPage = () => {
