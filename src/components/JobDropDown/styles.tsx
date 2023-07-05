@@ -24,5 +24,6 @@ export const StyledJobDropDown = styled.li`
   > p {
     margin-left: 5rem;
     margin-bottom: 1.5rem;
+    margin-right: 2rem;
   }
 `;

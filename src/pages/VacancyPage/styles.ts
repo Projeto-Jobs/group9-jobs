@@ -47,12 +47,19 @@ export const StyledVacancyPage = styled.div`
   > section {
     width: 63%;
     align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     > p {
       margin-top: 43px;
     }
     > ul {
       margin-top: 3rem;
+      width: 100%;
+    }
+    >img{
+
     }
   }
 `;
