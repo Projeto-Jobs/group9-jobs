@@ -32,7 +32,7 @@ export const StyledVacancyPage = styled.div`
     }
 
     > figure {
-      width: 66px;
+      min-width: 66px;
       height: 66px;
       background-color: var(--color-blue);
       display: flex;
