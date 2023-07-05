@@ -11,6 +11,7 @@ interface ILoginUser{
     id: number;
     name: string;
     email: string;
+    confirm: string;
 }
 
 interface IUserLoginResponse{
@@ -51,6 +52,7 @@ export const LoginProvider = ({children}: ILoginProviderProps) =>{
         setUserLogin(null)
         localStorage.removeItem("@Jobs:token")
         localStorage.removeItem("@Jobs:userId")
+        navigate("/")
     }
 
     return(
