@@ -2,16 +2,27 @@ import { styled } from "styled-components";
 
 export const StyledJobDropDown = styled.li`
   list-style: none;
-  
-  >div{
+  margin-bottom: 2rem;
+
+  > div {
     display: flex;
     gap: 3rem;
     width: 100%;
-    >img{
-        width:2rem;
+    height: 3.625rem;
+    margin-bottom: 2.5rem;
+    > img {
+      width: 2rem;
     }
-    >button{
-        margin-left: auto;
+    > div > h3{
+        margin-top: 1rem;
     }
+
+    > button {
+      margin-left: auto;
+    }
+  }
+  > p {
+    margin-left: 5rem;
+    margin-bottom: 1.5rem;
   }
 `;
