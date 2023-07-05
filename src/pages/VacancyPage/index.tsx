@@ -10,14 +10,16 @@ import { IJob, JobsListContext } from "../../providers/JobsListContext";
 export const VacancyPage = () => {
   const { jobsList } = useContext(JobsListContext);
   const [searchValue, setSearchValue] = useState("");
+  const [displayText, setDisplayText] = useState("");
   const [filteredList, setFilteredList] = useState<IJob[]>([]);
   const [searchButtonClicked, setSearchButtonClicked] = useState(false);
 
   const filterJobs = () => {
     setSearchButtonClicked(true);
+    setDisplayText(searchValue);
     setFilteredList(
       jobsList.filter((job) =>
-        job.position.toLowerCase().includes(searchValue.toLowerCase())
+        (job.position.toLowerCase().includes(searchValue.toLowerCase()))
       )
     );
   };
@@ -33,7 +35,7 @@ export const VacancyPage = () => {
       <StyledTitle1>Busca de Vagas</StyledTitle1>
       <p>Digite o que você está procurando:</p>
       <div>
-        <StyledInput value={searchValue} onChange={handleInputChange} />
+        <StyledInput value={searchValue} onChange={handleInputChange} placeholder="Pesquisa"/>
         <figure onClick={filterJobs}>
           <img src={scopLensWhite} alt="Botão de pesquisar vagas" />
         </figure>
@@ -41,6 +43,9 @@ export const VacancyPage = () => {
       <section>
         {searchButtonClicked ? (
           <>
+            <p>
+              Resultados de busca para: <strong>{displayText}</strong>
+            </p>
             <ul>
               {filteredList.map((job) => (
                 <li key={job.id}>
