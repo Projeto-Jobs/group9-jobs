@@ -38,7 +38,14 @@ export const RoutesMain = () => {
         </Route>
         
         <Route element={<ProtectedRoutes/>}>
-          <Route path="/AdminPage" element={<Administration/>}/>
+          <Route 
+          path="/AdminPage" 
+          element={
+            <LoginProvider>
+              <Administration/>
+            </LoginProvider>
+          }
+          />
         </Route>
     </Routes>
   );

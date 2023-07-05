@@ -1,12 +1,15 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Listapplications } from "../../components/AdmList/aplic"
 import { ListVacancys } from "../../components/AdmList/vacancys"
 import { AdmStyled } from "./styles"
 import jobs from "../../assets/jobs.svg"
+import { LoginContext } from "../../providers/LoginContext"
 
 export const Administration = () => {
 
     const [option, setOpetion] = useState("")
+
+    const {userLogout} = useContext(LoginContext)
 
     const OptionClick = (click: string) => {
         setOpetion(click)
@@ -18,7 +21,7 @@ export const Administration = () => {
                 <img src={jobs} alt="Logo da empresa" />
                 <div>
                     <button>KE</button>
-                    <button>Sair</button>
+                    <button onClick={userLogout}>Sair</button>
                 </div>
             </header>
             {option !== "Vagas" && option !== "Candidaturas" && (
