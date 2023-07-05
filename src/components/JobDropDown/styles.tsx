@@ -13,12 +13,17 @@ export const StyledJobDropDown = styled.li`
     > img {
       width: 2rem;
     }
-    > div > h3{
-        margin-top: 1rem;
+    > div > h3 {
+      margin-top: 1rem;
     }
 
     > button {
       margin-left: auto;
+      padding: 1.125rem 2.25rem;
+      border-radius: 255px;
+      border: 1px solid var(--color-blue);
+      background-color: white;
+      color: var(--color-blue);
     }
   }
   > p {

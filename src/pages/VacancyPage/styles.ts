@@ -59,8 +59,5 @@ export const StyledVacancyPage = styled.div`
       margin-top: 3rem;
       width: 100%;
     }
-    >img{
-
-    }
   }
 `;
