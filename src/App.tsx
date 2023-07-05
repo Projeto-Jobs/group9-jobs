@@ -6,6 +6,7 @@ import { JobsListProvider } from "./providers/JobsListContext"
 import { RoutesMain } from "./routes/RoutesMain"
 import { RegisterPage } from "./pages/RegisterPage"
 import { RegisterProvider } from "./providers/RegisterContext"
+import { Administration } from "./pages/AdminPage"
 
 
 
@@ -25,6 +26,8 @@ export const App = () => {
         <ListCompany/>
         <RoutesMain />
       </JobsListProvider>
+
+      <Administration/>
     </>
   )
 }
