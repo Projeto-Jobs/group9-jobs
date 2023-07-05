@@ -1,16 +1,15 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import img from "../../assets/HomePicture.svg"
 import imgMinus from "../../assets/plus.svg"
 import imgMax from "../../assets/minus.svg"
-
-import { ICompany } from "./homeContext"
+import { JobsListContext } from "../../providers/JobsListContext"
 import { StyledHome } from "./styles"
+import { Header } from "../../components/Header"
+import { StyledButton } from "../../styles/Global"
 
-interface IListProps {
-    list: ICompany[]
-}
+export const ListCompany = () => {
 
-export const ListCompany = ({}: IListProps) => {
+    const {jobsList} = useContext(JobsListContext)
 
     const [showButton, setShowButton] = useState(true)
 
@@ -22,6 +21,8 @@ export const ListCompany = ({}: IListProps) => {
     }
 
     return (
+        <div>
+        <Header/>
         <StyledHome>
             <div>
                 <h1>Trabalho é na Jobs</h1>
@@ -48,7 +49,8 @@ export const ListCompany = ({}: IListProps) => {
                     <h2>Confira nossas vagas</h2>
                 </div>
                 <ul>
-                    <li>
+                {jobsList.map((job) => (
+                    <li key={job.id}>
                         <div>
                             <div>
                             {showButton ? (
@@ -58,22 +60,24 @@ export const ListCompany = ({}: IListProps) => {
                             )}
                             <div>
                                 <h4>Kenzie Academy Brasil</h4>
-                                <h3>Desenvolverdor junior </h3>
+                                <h3>{job.position}</h3>
                             </div>
                             </div>
-                            <button>Cadastre-se</button>
+                            <StyledButton>Cadastre-se</StyledButton>
                         </div>
                         <div>
                             {showParagraph && (
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quos ipsa incidunt
-                                    minima in quo necessitatibus blanditiis molestias reprehenderit modi! Reiciendis
-                                    voluptatum odio vero explicabo aperiam quos velit impedit. Facilis!</p>
+                                <p>{job.description}</p>
                             )}
                         </div>
                     </li>
+                ))}
                 </ul>
             </section>
         </StyledHome>
+        </div>
 
     )
 }
+
+

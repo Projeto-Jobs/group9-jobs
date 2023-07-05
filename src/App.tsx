@@ -14,8 +14,6 @@ export const App = () => {
     <>
       <StyledReset />
       <StyledGlobalStyle />
-      <ListCompany list={[]}/>
-
 
       <LoginPage/>
 
@@ -24,6 +22,7 @@ export const App = () => {
       </RegisterProvider>
 
       <JobsListProvider>
+        <ListCompany/>
         <RoutesMain />
       </JobsListProvider>
     </>
