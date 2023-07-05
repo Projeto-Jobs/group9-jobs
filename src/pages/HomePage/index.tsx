@@ -5,6 +5,7 @@ import imgMax from "../../assets/minus.svg"
 import { JobsListContext } from "../../providers/JobsListContext"
 import { StyledHome } from "./styles"
 import { StyledButton } from "../../styles/Global"
+import { ModalRegister } from "../../components/ModalRegister/modal"
 
 export const ListCompany = () => {
 
@@ -14,10 +15,20 @@ export const ListCompany = () => {
 
     const [showParagraph, setShowParagraph] = useState(false)
 
+    const [modal, setModal] = useState(false)
+
     const modifyButton = () => {
         setShowButton(!showButton)
         setShowParagraph(!showParagraph)
     }
+
+    const openModal = () => {
+        setModal(true);
+      }
+    
+      const closeModal = () => {
+        setModal(false);
+      }
 
     return (
         <div>
@@ -63,7 +74,7 @@ export const ListCompany = () => {
                                 <h3>{job.position}</h3>
                             </div>
                             </div>
-                            <StyledButton>Cadastre-se</StyledButton>
+                            {/* <StyledButton onClick={openModal}>Cadastre-se</StyledButton> */}
                         </div>
                         <div>
                             {showParagraph && (
@@ -74,9 +85,10 @@ export const ListCompany = () => {
                 ))}
                 </ul>
             </section>
+            <StyledButton onClick={openModal}>Cadastre-se</StyledButton>
         </StyledHome>
+        {modal && <ModalRegister isOpen={setModal} onClose={closeModal} />}
         </div>
-
     )
 }
 
