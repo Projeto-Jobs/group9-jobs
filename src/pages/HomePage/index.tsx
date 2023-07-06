@@ -2,30 +2,48 @@ import { useContext, useState } from "react"
 import img from "../../assets/HomePicture.svg"
 import imgMinus from "../../assets/plus.svg"
 import imgMax from "../../assets/minus.svg"
-import { JobsListContext } from "../../providers/JobsListContext"
+import { IJob, JobsListContext } from "../../providers/JobsListContext"
 import { StyledHome } from "./styles"
-import { Header } from "../../components/Header"
 import { StyledButton } from "../../styles/Global"
+import { ModalRegister } from "../../components/ModalRegister/modal"
 
 export const ListCompany = () => {
 
-    const {jobsList} = useContext(JobsListContext)
+    const {jobsList, setCurrentJob} = useContext(JobsListContext)
+    console.log(jobsList)
 
-    const [showButton, setShowButton] = useState(true)
+    const [showButton, setShowButton] = useState(0)
 
-    const [showParagraph, setShowParagraph] = useState(false)
+    const [showParagraph, setShowParagraph] = useState(0)
 
-    const modifyButton = () => {
-        setShowButton(!showButton)
-        setShowParagraph(!showParagraph)
+    const [modal, setModal] = useState(false)
+
+    const modifyButton = (id: number) => {
+        console.log(id)
+        setShowButton(id)
+        setShowParagraph(id)
     }
+
+    const openModal = () => {
+        setModal(true)
+      }
+    
+      const closeModal = () => {
+        setModal(false)
+      }
+
+      const editModal = (job:IJob) => {
+        setCurrentJob(job);
+        setModal(true)
+      }
 
     return (
         <div>
-        <Header/>
         <StyledHome>
             <div>
-                <h1>Trabalho é na Jobs</h1>
+                <div>
+                    <h1>Trabalho é na Jobs</h1>
+                </div>
             </div>
             <section>
                 <div>
@@ -53,20 +71,20 @@ export const ListCompany = () => {
                     <li key={job.id}>
                         <div>
                             <div>
-                            {showButton ? (
-                                <img onClick={modifyButton} src={imgMax} alt="" />
+                            {showButton !== job.id ?  (
+                                <img onClick={() => modifyButton(job.id)} src={imgMax} alt="" />
                             ) : (
-                                <img onClick={modifyButton} src={imgMinus} alt="" />
+                                <img onClick={() => modifyButton(0)} src={imgMinus} alt="" />
                             )}
                             <div>
-                                <h4>Kenzie Academy Brasil</h4>
+                                <h4>{job.user.name}</h4>
                                 <h3>{job.position}</h3>
                             </div>
                             </div>
-                            <StyledButton>Cadastre-se</StyledButton>
+                            <StyledButton onClick={() => editModal(job)}>Cadastre-se</StyledButton>
                         </div>
                         <div>
-                            {showParagraph && (
+                            {showParagraph == job.id && (
                                 <p>{job.description}</p>
                             )}
                         </div>
@@ -75,9 +93,8 @@ export const ListCompany = () => {
                 </ul>
             </section>
         </StyledHome>
+        {modal && <ModalRegister isOpen={setModal} onClose={closeModal}/>}
         </div>
-
     )
 }
-
 

@@ -2,10 +2,10 @@ import { styled } from "styled-components";
 
 export const StyledHome = styled.div`
     margin-bottom: 40px;
+    font-family: Montserrat;
     
     >div:nth-child(1){
-        padding: 0 10%;
-        width: 1728px;
+        width: 100%;
         height: 206px;
         background-color: var(--color-blue);
         color: var(--color-white);
@@ -13,26 +13,25 @@ export const StyledHome = styled.div`
         align-items: center;
         font-size: 30px;
     }
-
-    section:first-of-type > div:nth-child(1) {
-        padding: 0 10%;
-        display: flex;
-        margin-top: 60px;
-        justify-content: space-between;
-        h2{
-        font-size: 40px;
-        color: var(--color-blue);
+        section:first-of-type > div {
+            display: flex;
+            padding: 60px 0px 0px 0px;
+            justify-content: space-between;
+            h2{
+                font-size: 40px;
+                color: var(--color-blue);
             }
-        p{
-        width: 650px;
-        margin-top: 60px;
-        font-size: 20px;
+            p{
+                max-width: 650px;
+                margin-top: 60px;
+                font-size: 20px;
             }
-    }
+        }
 
     section:first-of-type > div:nth-child(1) > div:nth-child(2){
         img{
-        width: 570px;
+            max-width: 570px;
+            height: fit-content;
        
         }
     }
@@ -57,25 +56,32 @@ export const StyledHome = styled.div`
         }
     }
 
-    li:first-of-type > div:nth-child(1){
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
+    li{
+        div:nth-child(1){
 
-    li:first-of-type > div:nth-child(1)> div:nth-child(1){
-        display: flex;
-        gap: 50px;
-        align-items: center;
-
-        h4{
-            color:var(--color-blue);
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        
+            display: flex;
+            gap: 50px;
+            align-items: center;
+    
+            h4{
+                margin-top: 20px;
+                color:var(--color-blue);
+            }
+    
+            h3{
+                margin-top: 20px;
+                font-weight: bold;
+                font-size: 20px;
+            }
+            
         }
-
-        h3{
-            font-weight: bold;
-            font-size: 20px;
+        p{
+            margin-top: 20px;
         }
 
     }

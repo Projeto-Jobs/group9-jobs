@@ -1,13 +1,8 @@
-import { ListCompany } from "./pages/HomePage"
-import { LoginPage } from "./pages/LoginPage"
 import { StyledGlobalStyle } from "./styles/Global"
 import { StyledReset } from "./styles/Reset"
 import { JobsListProvider } from "./providers/JobsListContext"
 import { RoutesMain } from "./routes/RoutesMain"
-import { RegisterPage } from "./pages/RegisterPage"
-import { RegisterProvider } from "./providers/RegisterContext"
-
-
+import { Header } from "./components/Header"
 
 export const App = () => {
   return (
@@ -15,16 +10,11 @@ export const App = () => {
       <StyledReset />
       <StyledGlobalStyle />
 
-      <LoginPage/>
-
-      <RegisterProvider>
-        <RegisterPage />
-      </RegisterProvider>
-
+      {/* { isToken ? HeaderAdmin : <Header /> } */}
       <JobsListProvider>
-        <ListCompany/>
         <RoutesMain />
       </JobsListProvider>
+
     </>
   )
 }
