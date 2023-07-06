@@ -19,7 +19,6 @@ export const CreateVacancyForm = () => {
     })
 
     const submit = (formData:TCreateVacancy) => {
-        console.log(formData)
         newVacancy(formData)       
     }
 

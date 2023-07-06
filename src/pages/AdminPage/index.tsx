@@ -3,6 +3,7 @@ import { Listapplications } from "../../components/AdmList/aplic"
 import { ListVacancys } from "../../components/AdmList/vacancys"
 import { AdmStyled } from "./styles"
 import { Link } from "react-router-dom"
+import { ButtonCompanyStyle } from "../../components/HeaderLogin/style"
 
 export const Administration = () => {
 
@@ -30,7 +31,7 @@ export const Administration = () => {
                     <div className="div_Span--button">
                     <h2>Minhas vagas</h2>
                     <Link to="/CreateVacancyPage" style={{ textDecoration: 'none' }}>
-                     <button>Criar vaga</button>
+                     <ButtonCompanyStyle>Criar vaga</ButtonCompanyStyle>
                     </Link>
                     </div>
                     <ListVacancys />
