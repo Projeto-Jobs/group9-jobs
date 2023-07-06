@@ -23,6 +23,8 @@ interface IJobsListContext {
   jobsList: IJob[];
   filteredList: IJob[];
   setFilteredList: React.Dispatch<React.SetStateAction<IJob[]>>;
+  currentJob: IJob;
+  setCurrentJob: React.Dispatch<React.SetStateAction<IJob>> ;
 }
 
 export const JobsListContext = createContext({} as IJobsListContext);
@@ -30,6 +32,7 @@ export const JobsListContext = createContext({} as IJobsListContext);
 export const JobsListProvider = ({ children }: IJobsListProviderProps) => {
   const [jobsList, setJobsList] = useState<IJob[]>([]);
   const [filteredList, setFilteredList] = useState<IJob[]>([]);
+  const [currentJob, setCurrentJob] = useState<IJob>({});
 
   useEffect(() => {
     const loadJobs = async () => {
@@ -44,7 +47,7 @@ export const JobsListProvider = ({ children }: IJobsListProviderProps) => {
   }, []);
   return (
     <JobsListContext.Provider
-      value={{ jobsList, filteredList, setFilteredList }}
+      value={{ jobsList, filteredList, setFilteredList, currentJob, setCurrentJob }}
     >
       {children}
     </JobsListContext.Provider>
