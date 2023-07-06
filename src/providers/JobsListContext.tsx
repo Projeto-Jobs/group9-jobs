@@ -21,6 +21,7 @@ interface IJobsListProviderProps {
 
 interface IJobsListContext {
   jobsList: IJob[];
+  setJobsList: React.Dispatch<React.SetStateAction<IJob[]>>;
   filteredList: IJob[];
   setFilteredList: React.Dispatch<React.SetStateAction<IJob[]>>;
   currentJob: IJob;
@@ -47,7 +48,7 @@ export const JobsListProvider = ({ children }: IJobsListProviderProps) => {
   }, []);
   return (
     <JobsListContext.Provider
-      value={{ jobsList, filteredList, setFilteredList, currentJob, setCurrentJob }}
+      value={{ jobsList, filteredList, setFilteredList, currentJob, setCurrentJob, setJobsList }}
     >
       {children}
     </JobsListContext.Provider>

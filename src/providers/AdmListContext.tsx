@@ -35,7 +35,6 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
                     }
                 })
                 setAdmJob(data)
-                console.log(data)
             } catch (error) {
                 console.log(error)
             }

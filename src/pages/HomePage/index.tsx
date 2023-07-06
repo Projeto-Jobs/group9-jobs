@@ -6,24 +6,22 @@ import { IJob, JobsListContext } from "../../providers/JobsListContext"
 import { StyledHome } from "./styles"
 import { StyledButton } from "../../styles/Global"
 import { ModalRegister } from "../../components/ModalRegister/modal"
+import { StyledText, StyledTitle2, StyledTitle3 } from "../../styles/Typography"
 
 export const ListCompany = () => {
 
    const { jobsList, setCurrentJob } = useContext(JobsListContext)
+   console.log(jobsList)
 
-   const [showButton, setShowButton] = useState(true)
+   const [showButton, setShowButton] = useState(0)
 
-   const [showParagraph, setShowParagraph] = useState(false)
+   const [showParagraph, setShowParagraph] = useState(0)
 
    const [modal, setModal] = useState(false)
 
-   const modifyButton = () => {
-      setShowButton(!showButton)
-      setShowParagraph(!showParagraph)
-   }
-
-   const openModal = () => {
-      setModal(true)
+   const modifyButton = (id: number) => {
+      setShowButton(id)
+      setShowParagraph(id)
    }
 
    const closeModal = () => {
@@ -46,14 +44,14 @@ export const ListCompany = () => {
             <section>
                <div>
                   <div>
-                     <h2>Sobre a Jobs</h2>
-                     <p>A Jobs é uma empresa dedicada a ajudar pessoas a encontrar empregos e empresas a descobrir talentos.
+                     <StyledTitle2 color="blue">Sobre a Jobs</StyledTitle2>
+                     <StyledText text="paragraph" className="apresentation-text">A Jobs é uma empresa dedicada a ajudar pessoas a encontrar empregos e empresas a descobrir talentos.
                         Nossa plataforma permite que os usuários se cadastrem como candidatos em busca de oportunidades de
                         emprego ou como empresas em busca de profissionais qualificados. Com uma interface intuitiva e
                         recursos avançados de busca, conectamos as necessidades dos candidatos às demandas das empresas de
                         forma eficiente e eficaz. Na Jobs, nosso objetivo é promover um ambiente de trabalho próspero,
                         facilitando o encontro entre talentos e oportunidades.
-                     </p>
+                     </StyledText>
                   </div>
                   <div>
                      <img id="banner" src={img} alt="" />
@@ -62,34 +60,35 @@ export const ListCompany = () => {
             </section>
             <section>
                <div>
-                  <h2>Confira nossas vagas</h2>
+                  <StyledTitle2 color="blue">Confira nossas vagas</StyledTitle2>
                </div>
                <ul>
                   {jobsList.map((job) => (
                      <li key={job.id}>
-                        <div>
-                           <div>
-                              {showButton ? (
-                                 <img onClick={modifyButton} src={imgMinus} alt="" />
+                        <div id="buttonProblem">
+                           <div id="profile-job">
+                              {showButton !== job.id ? (
+                                 <img onClick={() => modifyButton(job.id)} src={imgMax} alt="" />
                               ) : (
-                                 <img onClick={modifyButton} src={imgMax} alt="" />
+                                 <img onClick={() => modifyButton(0)} src={imgMinus} alt="" />
                               )}
                               <div>
-                                 <h4>{job.user.name}</h4>
-                                 <h3>{job.position}</h3>
+                                 <StyledText text="label">{job.user.name}</StyledText>
+                                 <StyledTitle3 color="black">{job.position}</StyledTitle3>
                               </div>
                            </div>
                            <StyledButton onClick={() => editModal(job)}>Cadastre-se</StyledButton>
                         </div>
-                        <div>
-                           {showParagraph && (
-                              <p>{job.description}</p>
+                        <div className="description-container">
+                           {showParagraph == job.id && (
+                              <StyledText text="paragraph">{job.description}</StyledText>
                            )}
                         </div>
-                     </li>
+                     </li >
                   ))}
-               </ul>
-            </section>
+               </ul >
+            </section >
+
          </StyledHome>
          {modal && <ModalRegister isOpen={setModal} onClose={closeModal} />}
       </div>

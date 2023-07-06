@@ -1,35 +1,49 @@
 import styled, {css} from "styled-components"
 
-export const TitleStyles = css`
+interface ITitleColorStyle {
+    color: "blue" | "white" | "black";
+}
+
+export const TitleStyles = css<ITitleColorStyle>`
     font-family: Montserrat;
     font-weight: 700;
+    ${({color}) => {
+        switch (color) {
+            case 'blue':
+                return css` color: var(--color-blue); `
+            case 'white':
+                return css` color: var(--color-white); `
+            case 'black':
+                return css` color: var(--color-black); `
+        }
+    }}
 `
 
-export const StyledTitle1 = styled.h1`
+export const StyledTitle1 = styled.h1<ITitleColorStyle>`
     font-size: 64px;
     line-height: 78.02px;
     ${TitleStyles}
 `
 
-export const StyledTitle2 = styled.h2`
+export const StyledTitle2 = styled.h2<ITitleColorStyle>`
     font-size: 44px;
     line-height: 53.64px;
     ${TitleStyles}
 `
 
-export const StyledTitle3 = styled.h3`
+export const StyledTitle3 = styled.h3<ITitleColorStyle>`
     font-size: 21px;
     line-height: 25.6px;
     ${TitleStyles}
 `
 
 interface IStyledTextProps{
-    textStyle: "paragraph" | "paragraphBold" | "boldAlert" | "menu" | "label";
+    text: "paragraph" | "paragraphBold" | "boldAlert" | "menu" | "label";
 }
 
 export const StyledText = styled.p<IStyledTextProps>`
-    ${({textStyle}) => {
-        switch (textStyle) {
+    ${({text}) => {
+        switch (text) {
             case 'paragraph':
                 return css`
                     font-family: Inter;
@@ -67,7 +81,6 @@ export const StyledText = styled.p<IStyledTextProps>`
                     font-family: Montserrat;
                     font-size: 17px;
                     font-weight: 400;
-                    line-height: 21px;
                     color: var(--color-blue);
                 `
         }
