@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react"
-import { api } from "../services/api";
+import { api } from "../services/api"
 
 interface IAdmJob{
     userId: number;
@@ -9,12 +9,22 @@ interface IAdmJob{
     description: string;
 }
 
+interface IAdmApplications{
+    id: number;
+    jobId: number;
+    userId: number;
+    name: string;
+    email: string;
+    linkedin: string;
+}
+
 interface IAdmJobList{
     children: React.ReactNode
 }
 
 interface IAdmJobListContext{
-    admJob: IAdmJob[]
+    admJob: IAdmJob[];
+    admApplication: IAdmApplications[]
 }
 
 
@@ -25,6 +35,9 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
     const token = localStorage.getItem("@Jobs:token")
 
     const [ admJob, setAdmJob] = useState<IAdmJob[]>([])
+    const [ admApplication, setAdmApplication] = useState<IAdmApplications[]>([])
+    console.log(admApplication)
+    console.log(admJob)
    
     useEffect(() =>{
         const loadAdmJobs = async () =>{
@@ -40,10 +53,25 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
             }
         }
         loadAdmJobs()
+
+        const loadAdmApplications = async () =>{
+            try {
+                const { data } = await api.get(`/applications?userId=${userId}&_expand=job`,{
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                console.log("data: ",data)
+                setAdmApplication(data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        loadAdmApplications()
     },[])
 
     return(
-        <AdmListContext.Provider value={{ admJob }}>
+        <AdmListContext.Provider value={{ admJob, admApplication }}>
             {children}
         </AdmListContext.Provider>
     )
