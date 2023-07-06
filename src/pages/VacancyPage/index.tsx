@@ -1,12 +1,12 @@
-import { StyledTitle1 } from "../../styles/Typography";
-import { StyledVacancyPage } from "./styles";
-import scopLensWhite from "../../assets/scopLens white.svg";
-import emptyListImg from "../../assets/empty.svg";
-import { StyledInput } from "../../components/InputField/styles";
-import { SetStateAction, useContext, useState } from "react";
-import { JobsListContext } from "../../providers/JobsListContext";
-import { JobDropDown } from "../../components/JobDropDown";
-import { ModalRegister } from "../../components/ModalRegister/modal";
+import { StyledTitle1 } from "../../styles/Typography"
+import { StyledVacancyPage } from "./styles"
+import scopLensWhite from "../../assets/scopLens white.svg"
+import emptyListImg from "../../assets/empty.svg"
+import { StyledInput } from "../../components/InputField/styles"
+import { SetStateAction, useContext, useState } from "react"
+import { JobsListContext } from "../../providers/JobsListContext"
+import { JobDropDown } from "../../components/JobDropDown"
+import { ModalRegister } from "../../components/ModalRegister/modal"
 
 export const VacancyPage = () => {
   const { jobsList, setFilteredList, filteredList } =
@@ -40,7 +40,7 @@ export const VacancyPage = () => {
   };
   return (
     <StyledVacancyPage>
-      <StyledTitle1>Busca de Vagas</StyledTitle1>
+      <StyledTitle1 color="blue">Busca de Vagas</StyledTitle1>
       <p>Digite o que você está procurando:</p>
       <div>
         <StyledInput

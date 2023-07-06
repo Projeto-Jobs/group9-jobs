@@ -10,7 +10,7 @@ export const RegisterPage = () => {
                 <span id="return">voltar</span>
             </Link>
             <div>
-                <StyledTitle1>Cadastre - se</StyledTitle1>
+                <StyledTitle1 color="blue">Cadastre - se</StyledTitle1>
                 <RegisterForm />
             </div>
         </StyledRegisterPage>

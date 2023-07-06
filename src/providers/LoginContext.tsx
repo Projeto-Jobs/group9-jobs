@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react"
 import { api } from "../services/api"
 import { useNavigate } from "react-router-dom"
-import { JobsListContext } from "./JobsListContext";
+import { JobsListContext } from "./JobsListContext"
 
 
 interface ILoginProviderProps{
