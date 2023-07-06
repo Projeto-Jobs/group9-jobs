@@ -5,7 +5,7 @@ export const EditVacancys = ({ formData, onSubmit }: { formData: IAdmJob; onSubm
 
     const { editVacanciesJob } = useContext(AdmListContext)
 
-    const [editData, setEditData] = useState<IAdmJob>(formData)
+    const [editData, setEditData] = useState<IAdmJob>(formData || { position: '', sallary: '' });
 
     const inputs = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -15,7 +15,7 @@ export const EditVacancys = ({ formData, onSubmit }: { formData: IAdmJob; onSubm
         }))
       }
 
-      const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         editVacanciesJob(editData);
         onSubmit(editData);

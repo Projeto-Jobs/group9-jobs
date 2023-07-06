@@ -26,7 +26,6 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
     const token = localStorage.getItem("@Jobs:token")
 
     const [ admJob, setAdmJob] = useState<IAdmJob[]>([])
-    const [ editForm, setEditForm] = useState<IAdmJob | null>(null)
    
     useEffect(() =>{
         const loadAdmJobs = async () =>{
@@ -43,9 +42,7 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
         }
         loadAdmJobs()
     },[])
-
     
-
     const deleteVacancy = async (jobId: number) => {
         try {
             await api.delete(`jobs/${jobId}`, {
@@ -69,7 +66,6 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
             })
             const editJobs = admJob.map((job) => job.id === edit.id ? edit : job )
             setAdmJob(editJobs)
-            setEditForm(null)
         } catch (error) {
         }
     }

@@ -45,8 +45,10 @@ export const RoutesMain = () => {
           <Route path="/CreateVacancyPage" element={
           <AdminProvider>
             <CreateVacancyPage/>
-          
           </AdminProvider>}/>
+
+           <Route path="EditPage" element={<EditVacancys/>} />
+          
           
           <Route path="/CreateVacancyPage" element={
           <AdminProvider>

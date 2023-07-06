@@ -7,7 +7,6 @@ import { Link } from "react-router-dom"
 
 export const ListVacancys = () => {
     const { admJob, deleteVacancy } = useContext(AdmListContext)
-    console.log(admJob)
 
     const deleted = async (jobId: number) => {
         try {
