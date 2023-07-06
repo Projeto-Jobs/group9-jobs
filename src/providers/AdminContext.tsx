@@ -23,7 +23,7 @@ interface IAdminProviderProps {
 }
 
 interface IRegisterNewVacancy {
-  newVacancy: (formData: INewVancancy) => Promise<void>
+  newVacancy: (formData: INewVancancy) => Promise<void>;
 }
 
 interface INewVancancy {
