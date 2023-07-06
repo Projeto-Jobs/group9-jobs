@@ -9,6 +9,8 @@ import { ApplicationProvider } from "../providers/ModalContext";
 import { LoginProvider } from "../providers/LoginContext";
 import { ProtectedRoutes } from "../components/ProtectedRoutes";
 import { PublicRoutes } from "../components/PublicRoutes";
+import { CreateVacancyPage } from "../pages/AdmCreateVacancyPage";
+import { AdminProvider } from "../providers/AdminContext";
 
 export const RoutesMain = () => {
   return (
@@ -39,7 +41,12 @@ export const RoutesMain = () => {
         
         <Route element={<ProtectedRoutes/>}>
           <Route path="/AdminPage" element={<Administration/>}/>
+          <Route path="/CreateVacancyPage" element={
+          <AdminProvider>
+            <CreateVacancyPage/>
+          </AdminProvider>  }/>
         </Route>
+
     </Routes>
   );
 };
