@@ -4,6 +4,7 @@ import { ListVacancys } from "../../components/AdmList/vacancys"
 import { AdmStyled } from "./styles"
 import jobs from "../../assets/jobs.svg"
 import { LoginContext } from "../../providers/LoginContext"
+import { AdmListContext } from "../../providers/AdmListContext"
 
 export const Administration = () => {
 
