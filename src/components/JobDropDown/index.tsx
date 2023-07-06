@@ -1,9 +1,9 @@
-import { StyledJobDropDown } from "./styles";
-import imgMinus from "../../assets/plus.svg";
-import imgMax from "../../assets/minus.svg";
-import { SetStateAction, useContext, useState } from "react";
-import { StyledTitle3 } from "../../styles/Typography";
-import { IJob, JobsListContext } from "../../providers/JobsListContext";
+import { StyledJobDropDown } from "./styles"
+import imgMinus from "../../assets/plus.svg"
+import imgMax from "../../assets/minus.svg"
+import { SetStateAction, useContext, useState } from "react"
+import { StyledTitle3 } from "../../styles/Typography"
+import { IJob, JobsListContext } from "../../providers/JobsListContext"
 
 interface IDropDownProps {
   item: IJob;

@@ -23,7 +23,6 @@ export const App = () => {
       <JobsListProvider>
         <RoutesMain />
       </JobsListProvider>
-
     </>
   )
 }

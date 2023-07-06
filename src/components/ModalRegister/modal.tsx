@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from "react"
 import { ApplicationsContext } from "../../providers/ModalContext"
-import { ModalStyled } from "./styles";
-import { StyledButton } from "../../styles/Global";
+import { ModalStyled } from "./styles"
+import { StyledButton } from "../../styles/Global"
 import imgButton from "../../assets/buttonClose.svg"
-import { JobsListContext } from "../../providers/JobsListContext";
+import { JobsListContext } from "../../providers/JobsListContext"
 
 interface Application {
   jobId: number;

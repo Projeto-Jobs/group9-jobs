@@ -1,5 +1,5 @@
-import { ChangeEvent, useContext, useState } from "react";
-import { AdmListContext, IAdmJob } from "../../providers/AdmListContext";
+import { ChangeEvent, useContext, useState } from "react"
+import { AdmListContext, IAdmJob } from "../../providers/AdmListContext"
 
 export const EditVacancys = ({ formData, onSubmit }: { formData: IAdmJob; onSubmit: (data: IAdmJob) => void }) => {
 

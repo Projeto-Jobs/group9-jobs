@@ -10,7 +10,7 @@ export const CreateVacancyPage = () => {
               <span id="return">voltar</span>
             </Link>
             <div>
-                <StyledTitle1>Criar vaga</StyledTitle1>
+                <StyledTitle1 color="blue">Criar vaga</StyledTitle1>
                 <CreateVacancyForm />
             </div>
         </StyledCreateVacancyPage>
