@@ -10,6 +10,9 @@ export const StyledJobDropDown = styled.li`
     width: 100%;
     height: 3.625rem;
     margin-bottom: 2.5rem;
+    > div > span{
+      color: var(--color-blue);;
+    }
     > img {
       width: 2rem;
     }

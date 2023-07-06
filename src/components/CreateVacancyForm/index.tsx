@@ -5,18 +5,22 @@ import { StyledVacancyForm } from "./styles"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { validationVacancySchema } from "./validationCreateVacancyForm"
 import { z } from "zod"
+import { useContext, useState } from "react"
+import { AdminContext } from "../../providers/AdminContext"
+
 
 type TCreateVacancy = z.infer<typeof validationVacancySchema>
 
 export const CreateVacancyForm = () => {
 
+    const {newVacancy} = useContext(AdminContext)
     const {register, handleSubmit, formState: {errors} } = useForm<TCreateVacancy>({
         resolver: zodResolver(validationVacancySchema)
     })
 
     const submit = (formData:TCreateVacancy) => {
-        console.log(formData);
-        
+        console.log(formData)
+        newVacancy(formData)       
     }
 
     return (
@@ -29,7 +33,7 @@ export const CreateVacancyForm = () => {
             <InputField 
                 {...register("sallary")}
                 type="number"
-                placeholder="Salário (Opcional)" 
+                placeholder="Salário (Opcional)"
                 errorMessage={errors.sallary?.message}/>
             <div>
                 <textarea 

@@ -1,6 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { api } from "../services/api";
-
+import { useNavigate } from 'react-router-dom'
 export interface ICompanyJob {
   userId: number;
   id: number;
@@ -22,14 +22,24 @@ interface IAdminProviderProps {
   children: React.ReactNode;
 }
 
-export const AdminContext = createContext({});
+interface IRegisterNewVacancy {
+  newVacancy: (formData: INewVancancy) => Promise<void>
+}
+
+interface INewVancancy {
+  position: string,
+  sallary?: number,
+  description: string,
+}
+
+export const AdminContext = createContext<IRegisterNewVacancy>({} as IRegisterNewVacancy);
 
 export const AdminProvider = ({ children }: IAdminProviderProps) => {
   const [jobs, setJobs] = useState<ICompanyJob[]>([]);
   const [Applies, setApplies] = useState<ICompanyApplies[]>([]);
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inp6MUBtYWlsLmNvbSIsImlhdCI6MTY4ODU2NDY5NCwiZXhwIjoxNjg4NTY4Mjk0LCJzdWIiOiI3In0.rC_Fnatd_HBTYSyOE8xm8-EpbQutplMO3IwMGFxB9SM";
-  const userId = 1;
+  const navigate = useNavigate()
+  const token = localStorage.getItem("@Jobs:token")
+  const userId = localStorage.getItem("@Jobs:userId")
 
   useEffect(() => {
     const loadCompanyJobs = async () => {
@@ -60,5 +70,25 @@ export const AdminProvider = ({ children }: IAdminProviderProps) => {
     };
     loadApplies();
   }, []);
-  return <AdminContext.Provider value={{}}>{children}</AdminContext.Provider>;
+
+  const newVacancy = async (formData: INewVancancy) => {
+    try {
+      const { data } = await api.post("/jobs/", { ...formData, userId: userId }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      setJobs([...jobs, data])
+      navigate("/AdminPage")
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+
+  return (
+    <AdminContext.Provider value={{ newVacancy }}>
+      {children}
+    </AdminContext.Provider>
+  );
 };
