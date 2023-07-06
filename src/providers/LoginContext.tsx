@@ -11,7 +11,6 @@ interface ILoginUser{
     id: number;
     name: string;
     email: string;
-    confirm: string;
 }
 
 interface IUserLoginResponse{
