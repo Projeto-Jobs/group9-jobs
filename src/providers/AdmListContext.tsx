@@ -16,6 +16,7 @@ interface IAdmApplications{
     name: string;
     email: string;
     linkedin: string;
+    job: IAdmJob;
 }
 
 interface IAdmJobList{
