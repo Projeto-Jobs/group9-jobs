@@ -7,6 +7,7 @@ import { RegisterProvider } from "../providers/RegisterContext";
 import { Administration } from "../pages/AdminPage";
 import { ApplicationProvider } from "../providers/ModalContext";
 import { LoginProvider } from "../providers/LoginContext";
+import { CreateVacancyPage } from "../pages/AdmCreateVacancyPage";
 
 export const RoutesMain = () => {
   return (
@@ -36,6 +37,7 @@ export const RoutesMain = () => {
           </RegisterProvider>
         }
       />
+      <Route path="/CreateVacancyPage" element={<CreateVacancyPage/>}/>
     </Routes>
   );
 };

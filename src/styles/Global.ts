@@ -23,6 +23,10 @@ export const StyledButton = styled.button`
     border-radius: 255px;
     background: var(--color-blue);
 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     font-family: Montserrat;
     font-size: 1.063rem;
     font-weight: 700;
