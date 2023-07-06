@@ -54,9 +54,9 @@ export const ListCompany = () => {
                         <div>
                             <div>
                             {showButton ? (
-                                <img onClick={modifyButton} src={imgMinus} alt="" />
-                            ) : (
                                 <img onClick={modifyButton} src={imgMax} alt="" />
+                            ) : (
+                                <img onClick={modifyButton} src={imgMinus} alt="" />
                             )}
                             <div>
                                 <h4>Kenzie Academy Brasil</h4>
