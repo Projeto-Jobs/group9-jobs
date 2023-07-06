@@ -6,6 +6,7 @@ import { StyledInput } from "../../components/InputField/styles";
 import { SetStateAction, useContext, useState } from "react";
 import { JobsListContext } from "../../providers/JobsListContext";
 import { JobDropDown } from "../../components/JobDropDown";
+import { ModalRegister } from "../../components/ModalRegister/modal";
 
 export const VacancyPage = () => {
   const { jobsList, setFilteredList, filteredList } =
@@ -24,6 +25,12 @@ export const VacancyPage = () => {
           job.user.name.toLowerCase().includes(searchValue.toLowerCase())
       )
     );
+  };
+
+  const [modal, setModal] = useState(false);
+
+  const closeModal = () => {
+    setModal(false);
   };
 
   const handleInputChange = (e: {
@@ -53,7 +60,7 @@ export const VacancyPage = () => {
             </p>
             <ul>
               {filteredList.map((job) => (
-                <JobDropDown key={job.id} item={job} />
+                <JobDropDown key={job.id} item={job} setModal={setModal} />
               ))}
             </ul>
           </>
@@ -63,6 +70,9 @@ export const VacancyPage = () => {
           <img src={emptyListImg} alt="Nenhum resultado foi encontrado" />
         ) : null}
       </section>
+      <aside>
+        {modal && <ModalRegister isOpen={setModal} onClose={closeModal} />}
+      </aside>
     </StyledVacancyPage>
   );
 };

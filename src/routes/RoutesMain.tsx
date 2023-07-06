@@ -45,6 +45,14 @@ export const RoutesMain = () => {
           <AdminProvider>
             <CreateVacancyPage/>
           </AdminProvider>  }/>
+          <Route 
+          path="/AdminPage" 
+          element={
+            <LoginProvider>
+              <Administration/>
+            </LoginProvider>
+          }
+          />
         </Route>
 
     </Routes>
