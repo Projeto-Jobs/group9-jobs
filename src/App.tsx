@@ -6,6 +6,7 @@ import { Header } from "./components/Header"
 import { HeaderLogin } from "./components/HeaderLogin"
 import { LoginProvider } from "./providers/LoginContext"
 
+
 export const App = () => {
 
   const token = localStorage.getItem("@Jobs:token")
