@@ -4,6 +4,7 @@ import { ListVacancys } from "../../components/AdmList/vacancys"
 import { AdmStyled } from "./styles"
 import jobs from "../../assets/jobs.svg"
 import { LoginContext } from "../../providers/LoginContext"
+import { Link } from "react-router-dom"
 
 export const Administration = () => {
 
@@ -38,7 +39,9 @@ export const Administration = () => {
                 <ul>
                     <div className="div_Span--button">
                     <h2>Minhas vagas</h2>
-                    <button>Criar vaga</button>
+                    <Link to="/CreateVacancyPage" style={{ textDecoration: 'none' }}>
+                     <button>Criar vaga</button>
+                    </Link>
                     </div>
                     <ListVacancys />
                 </ul>
