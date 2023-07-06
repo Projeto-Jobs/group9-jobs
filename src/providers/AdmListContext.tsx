@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react"
 import { api } from "../services/api";
 
-interface IAdmJob{
+export interface IAdmJob{
     userId: number;
     id: number;
     position: string;
@@ -16,6 +16,7 @@ interface IAdmJobList{
 interface IAdmJobListContext{
     admJob: IAdmJob[];
     deleteVacancy: (jobId: number) => void;
+    editVacanciesJob: (edit: IAdmJob) => void;
 }
 
 export const AdmListContext = createContext({} as IAdmJobListContext)
@@ -25,6 +26,7 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
     const token = localStorage.getItem("@Jobs:token")
 
     const [ admJob, setAdmJob] = useState<IAdmJob[]>([])
+    const [ editForm, setEditForm] = useState<IAdmJob | null>(null)
    
     useEffect(() =>{
         const loadAdmJobs = async () =>{
@@ -44,7 +46,7 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
 
     
 
-    const deleteVacancy= async (jobId: number) => {
+    const deleteVacancy = async (jobId: number) => {
         try {
             await api.delete(`jobs/${jobId}`, {
                 headers: {
@@ -58,8 +60,22 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
         }
     }
 
+     const editVacanciesJob = async (edit: IAdmJob) => {
+        try {
+            await api.put(`jobs/${edit.id}`, edit, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+            })
+            const editJobs = admJob.map((job) => job.id === edit.id ? edit : job )
+            setAdmJob(editJobs)
+            setEditForm(null)
+        } catch (error) {
+        }
+    }
+
     return(
-        <AdmListContext.Provider value={{ admJob, deleteVacancy }}>
+        <AdmListContext.Provider value={{ admJob, deleteVacancy, editVacanciesJob }}>
             {children}
         </AdmListContext.Provider>
     )

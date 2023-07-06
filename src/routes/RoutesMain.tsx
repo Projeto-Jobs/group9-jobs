@@ -12,6 +12,7 @@ import { PublicRoutes } from "../components/PublicRoutes";
 import { AdmJobListContext } from "../providers/AdmListContext";
 import { CreateVacancyPage } from "../pages/AdmCreateVacancyPage";
 import { AdminProvider } from "../providers/AdminContext";
+import { EditVacancys } from "../components/AdmList/editVacancys";
 
 export const RoutesMain = () => {
   return (
@@ -44,18 +45,28 @@ export const RoutesMain = () => {
           <Route path="/CreateVacancyPage" element={
           <AdminProvider>
             <CreateVacancyPage/>
-          </AdminProvider>  }/>
+          
+          </AdminProvider>}/>
+          
+          <Route path="/CreateVacancyPage" element={
+          <AdminProvider>
+            <CreateVacancyPage/>
+          </AdminProvider>}/>
+          
           <Route 
           path="/AdminPage" 
           element={
             <LoginProvider>
               <AdmJobListContext>
                 <Administration/>
+                
               </AdmJobListContext>
             </LoginProvider>
           }
           />
         </Route>
+
+
     </Routes>
   );
 };

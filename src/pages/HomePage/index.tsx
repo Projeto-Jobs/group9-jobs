@@ -10,7 +10,6 @@ import { ModalRegister } from "../../components/ModalRegister/modal"
 export const ListCompany = () => {
 
     const {jobsList, setCurrentJob} = useContext(JobsListContext)
-    console.log(jobsList)
 
     const [showButton, setShowButton] = useState(0)
 
@@ -23,10 +22,6 @@ export const ListCompany = () => {
         setShowButton(id)
         setShowParagraph(id)
     }
-
-    const openModal = () => {
-        setModal(true)
-      }
     
       const closeModal = () => {
         setModal(false)
@@ -72,9 +67,9 @@ export const ListCompany = () => {
                         <div>
                             <div>
                             {showButton !== job.id ?  (
-                                <img onClick={() => modifyButton(job.id)} src={imgMax} alt="" />
+                                <img onClick={() => modifyButton(job.id)} src={imgMinus} alt="" />
                             ) : (
-                                <img onClick={() => modifyButton(0)} src={imgMinus} alt="" />
+                                <img onClick={() => modifyButton(0)} src={imgMax} alt="" />
                             )}
                             <div>
                                 <h4>{job.user.name}</h4>
