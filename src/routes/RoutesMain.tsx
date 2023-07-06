@@ -41,7 +41,6 @@ export const RoutesMain = () => {
         </Route>
         
         <Route element={<ProtectedRoutes/>}>
-          <Route path="/AdminPage" element={<Administration/>}/>
           <Route path="/CreateVacancyPage" element={
           <AdminProvider>
             <CreateVacancyPage/>
@@ -57,7 +56,6 @@ export const RoutesMain = () => {
           }
           />
         </Route>
-
     </Routes>
   );
 };

@@ -29,7 +29,7 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
     useEffect(() =>{
         const loadAdmJobs = async () =>{
             try {
-                const { data } = await api.get(`/${userId}/jobs`,{
+                const { data } = await api.get(`users/${userId}/jobs`,{
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
