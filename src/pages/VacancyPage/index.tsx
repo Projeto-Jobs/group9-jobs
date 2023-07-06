@@ -28,9 +28,6 @@ export const VacancyPage = () => {
   };
 
   const [modal, setModal] = useState(false);
-  const openModal = () => {
-    setModal(true);
-  };
 
   const closeModal = () => {
     setModal(false);
