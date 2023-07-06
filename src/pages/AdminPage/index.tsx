@@ -1,12 +1,16 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Listapplications } from "../../components/AdmList/aplic"
 import { ListVacancys } from "../../components/AdmList/vacancys"
 import { AdmStyled } from "./styles"
 import jobs from "../../assets/jobs.svg"
+import { LoginContext } from "../../providers/LoginContext"
+import { Link } from "react-router-dom"
 
 export const Administration = () => {
 
     const [option, setOpetion] = useState("")
+
+    const {userLogout} = useContext(LoginContext)
 
     const OptionClick = (click: string) => {
         setOpetion(click)
@@ -18,7 +22,7 @@ export const Administration = () => {
                 <img src={jobs} alt="Logo da empresa" />
                 <div>
                     <button>KE</button>
-                    <button>Sair</button>
+                    <button onClick={userLogout}>Sair</button>
                 </div>
             </header>
             {option !== "Vagas" && option !== "Candidaturas" && (
@@ -35,7 +39,9 @@ export const Administration = () => {
                 <ul>
                     <div className="div_Span--button">
                     <h2>Minhas vagas</h2>
-                    <button>Criar vaga</button>
+                    <Link to="/CreateVacancyPage" style={{ textDecoration: 'none' }}>
+                     <button>Criar vaga</button>
+                    </Link>
                     </div>
                     <ListVacancys />
                 </ul>

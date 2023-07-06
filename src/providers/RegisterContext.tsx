@@ -21,9 +21,9 @@ export const RegisterProvider = ({ children }: IRegisterProviderProps) => {
 
     const navigate = useNavigate()
 
-    const registerUser = async (formData: IUser) => {
+    const registerUser = async ({name, email, password}: IUser) => {
         try {
-            const { data } = await api.post('/users', formData)
+            const { data } = await api.post('/users',{name, email, password})
             console.log(data);
             navigate("/LoginPage")
             

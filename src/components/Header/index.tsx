@@ -14,7 +14,7 @@ export const Header = () =>{
                 <Link to="/LoginPage">
                     <ButtonHeader>acesso empresa</ButtonHeader>
                 </Link>
-                <Link to="/">
+                <Link to="/" style={{ textDecoration: 'none' }}>
                     <StyledButton>Confira nossas vagas</StyledButton>
                 </Link>
                 <Link to="/VacancyPage">

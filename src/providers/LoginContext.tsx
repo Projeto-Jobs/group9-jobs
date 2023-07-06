@@ -1,6 +1,7 @@
-import { createContext, useState } from "react"
+import { createContext, useContext, useState } from "react"
 import { api } from "../services/api"
 import { useNavigate } from "react-router-dom"
+import { JobsListContext } from "./JobsListContext";
 
 
 interface ILoginProviderProps{
@@ -33,6 +34,7 @@ export const LoginContext = createContext({} as ILoginContext)
 
 export const LoginProvider = ({children}: ILoginProviderProps) =>{
     const [ login, setUserLogin] = useState<ILoginUser | null>(null)
+    const {setJobsList} = useContext(JobsListContext);
     
     const navigate = useNavigate()
     const userLogin = async (formData: IUser) =>{
@@ -51,6 +53,16 @@ export const LoginProvider = ({children}: ILoginProviderProps) =>{
         setUserLogin(null)
         localStorage.removeItem("@Jobs:token")
         localStorage.removeItem("@Jobs:userId")
+        const reloadJobs = async () => {
+            try {
+              const { data } = await api.get(`/jobs?_expand=user`);
+              setJobsList(data);
+            } catch (error) {
+              console.log(error);
+            }
+          };
+          reloadJobs();
+        navigate("/")
     }
 
     return(

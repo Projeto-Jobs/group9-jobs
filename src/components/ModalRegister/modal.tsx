@@ -3,6 +3,7 @@ import { ApplicationsContext } from "../../providers/ModalContext"
 import { ModalStyled } from "./styles";
 import { StyledButton } from "../../styles/Global";
 import imgButton from "../../assets/buttonClose.svg"
+import { JobsListContext } from "../../providers/JobsListContext";
 
 interface Application {
   jobId: number;
@@ -21,6 +22,7 @@ export const ModalRegister: React.FC<ModalRegisterProps> = ({ isOpen, onClose })
   const modalRef = useRef<HTMLDivElement>(null)
 
   const { registerApplication } = useContext(ApplicationsContext)
+  const { currentJob } = useContext(JobsListContext)
 
   const [formData, setFormData] = useState<Application>({
     jobId: 0,
@@ -79,7 +81,7 @@ export const ModalRegister: React.FC<ModalRegisterProps> = ({ isOpen, onClose })
           <header>
             <img onClick={handleClose} src={imgButton} alt="" />
             <h2>Cadastre-se</h2>
-            <p>Você está se candidatando para <strong>Desenvolvedor front-end </strong> na empresa <strong>Kenzie Academy Brasil</strong></p>
+            <p>Você está se candidatando para <strong>{currentJob.position} </strong> na empresa <strong>{currentJob.user.name}</strong></p>
           </header>
           <form onSubmit={handleSubmit}>
             <div>
