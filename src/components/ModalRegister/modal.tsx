@@ -99,7 +99,7 @@ export const ModalRegister: React.FC<ModalRegisterProps> = ({ isOpen, onClose })
                 value={formData.linkedin}
                 onChange={handleChange} />
             </div>
-            <StyledButton type="submit">Cadastre - se</StyledButton>
+              <StyledButton type="submit">Cadastre - se</StyledButton>
           </form>
         </div>
       </ModalStyled>

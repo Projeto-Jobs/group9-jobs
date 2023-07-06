@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import img from "../../assets/HomePicture.svg"
-import imgMinus from "../../assets/plus.svg"
-import imgMax from "../../assets/minus.svg"
+import imgMax from "../../assets/plus.svg"
+import imgMinus from "../../assets/minus.svg"
 import { JobsListContext } from "../../providers/JobsListContext"
 import { StyledHome } from "./styles"
 import { StyledButton } from "../../styles/Global"
@@ -11,23 +11,24 @@ export const ListCompany = () => {
 
     const {jobsList} = useContext(JobsListContext)
 
-    const [showButton, setShowButton] = useState(true)
+    const [showButton, setShowButton] = useState(0)
 
-    const [showParagraph, setShowParagraph] = useState(false)
+    const [showParagraph, setShowParagraph] = useState(0)
 
     const [modal, setModal] = useState(false)
 
-    const modifyButton = () => {
-        setShowButton(!showButton)
-        setShowParagraph(!showParagraph)
+    const modifyButton = (id: number) => {
+        console.log(id)
+        setShowButton(id)
+        setShowParagraph(id)
     }
 
     const openModal = () => {
-        setModal(true);
+        setModal(true)
       }
     
       const closeModal = () => {
-        setModal(false);
+        setModal(false)
       }
 
     return (
@@ -64,10 +65,10 @@ export const ListCompany = () => {
                     <li key={job.id}>
                         <div>
                             <div>
-                            {showButton ? (
-                                <img onClick={modifyButton} src={imgMinus} alt="" />
+                            {showButton !== job.id ?  (
+                                <img onClick={() => modifyButton(job.id)} src={imgMax} alt="" />
                             ) : (
-                                <img onClick={modifyButton} src={imgMax} alt="" />
+                                <img onClick={() => modifyButton(0)} src={imgMinus} alt="" />
                             )}
                             <div>
                                 <h4>{job.user.name}</h4>
@@ -77,7 +78,7 @@ export const ListCompany = () => {
                             <StyledButton onClick={openModal}>Cadastre-se</StyledButton>
                         </div>
                         <div>
-                            {showParagraph && (
+                            {showParagraph == job.id && (
                                 <p>{job.description}</p>
                             )}
                         </div>
@@ -85,9 +86,9 @@ export const ListCompany = () => {
                 ))}
                 </ul>
             </section>
-            <StyledButton onClick={openModal}>Cadastre-se</StyledButton>
+
         </StyledHome>
-        {modal && <ModalRegister isOpen={setModal} onClose={closeModal} />}
+        {modal && <ModalRegister isOpen={setModal} onClose={closeModal}/>}
         </div>
     )
 }
