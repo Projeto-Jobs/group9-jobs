@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react"
-import { api } from "../services/api";
+import { api } from "../services/api"
 
 export interface IAdmJob{
     userId: number;
@@ -26,6 +26,8 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
     const token = localStorage.getItem("@Jobs:token")
 
     const [ admJob, setAdmJob] = useState<IAdmJob[]>([])
+
+    const [ clickdJob, setClickdJob] = useState<IAdmJob[]>([])
    
     useEffect(() =>{
         const loadAdmJobs = async () =>{
@@ -51,27 +53,26 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
                   }
             })
             const deleteJobs = admJob.filter((job) => job.id !== jobId)
-            setAdmJob(deleteJobs)
+            setAdmJob(deleteJobs)    
         } catch (error) {
            console.log(error) 
         }
     }
 
-     const editVacanciesJob = async (edit: IAdmJob) => {
+     const editVacanciesJob = async (formData: IAdmJob) => {
         try {
-            await api.put(`jobs/${edit.id}`, edit, {
+            await api.put(`/jobs/${formData.id}`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                   },
             })
-            const editJobs = admJob.map((job) => job.id === edit.id ? edit : job )
-            setAdmJob(editJobs)
+         
         } catch (error) {
         }
     }
 
     return(
-        <AdmListContext.Provider value={{ admJob, deleteVacancy, editVacanciesJob }}>
+        <AdmListContext.Provider value={{ admJob, deleteVacancy, editVacanciesJob}}>
             {children}
         </AdmListContext.Provider>
     )
