@@ -36,7 +36,7 @@ export const JobDropDown = ({ item, setModal }: IDropDownProps) => {
         )}
         <div>
           <span>{item.user.name}</span>
-          <StyledTitle3>{item.position}</StyledTitle3>
+          <StyledTitle3 color="black">{item.position}</StyledTitle3>
         </div>
         <button onClick={() => editModal()}>Candidatar-se</button>
       </div>
