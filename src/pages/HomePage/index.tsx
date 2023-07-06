@@ -2,14 +2,14 @@ import { useContext, useState } from "react"
 import img from "../../assets/HomePicture.svg"
 import imgMinus from "../../assets/plus.svg"
 import imgMax from "../../assets/minus.svg"
-import { JobsListContext } from "../../providers/JobsListContext"
+import { IJob, JobsListContext } from "../../providers/JobsListContext"
 import { StyledHome } from "./styles"
 import { StyledButton } from "../../styles/Global"
 import { ModalRegister } from "../../components/ModalRegister/modal"
 
 export const ListCompany = () => {
 
-    const {jobsList} = useContext(JobsListContext)
+    const {jobsList, setCurrentJob} = useContext(JobsListContext)
 
     const [showButton, setShowButton] = useState(true)
 
@@ -28,6 +28,11 @@ export const ListCompany = () => {
     
       const closeModal = () => {
         setModal(false);
+      }
+
+      const editModal = (job:IJob) => {
+        setCurrentJob(job);
+        setModal(true)
       }
 
     return (
@@ -74,7 +79,7 @@ export const ListCompany = () => {
                                 <h3>{job.position}</h3>
                             </div>
                             </div>
-                            <StyledButton onClick={openModal}>Cadastre-se</StyledButton>
+                            <StyledButton onClick={() => editModal(job)}>Cadastre-se</StyledButton>
                         </div>
                         <div>
                             {showParagraph && (
@@ -85,7 +90,6 @@ export const ListCompany = () => {
                 ))}
                 </ul>
             </section>
-            <StyledButton onClick={openModal}>Cadastre-se</StyledButton>
         </StyledHome>
         {modal && <ModalRegister isOpen={setModal} onClose={closeModal} />}
         </div>
