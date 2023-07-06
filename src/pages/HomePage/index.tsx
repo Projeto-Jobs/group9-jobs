@@ -10,6 +10,7 @@ import { ModalRegister } from "../../components/ModalRegister/modal"
 export const ListCompany = () => {
 
     const {jobsList, setCurrentJob} = useContext(JobsListContext)
+    console.log(jobsList)
 
     const [showButton, setShowButton] = useState(true)
 
