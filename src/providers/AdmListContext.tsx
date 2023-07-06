@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react"
-import { api } from "../services/api";
+import { api } from "../services/api"
 
 export interface IAdmJob{
     userId: number;
@@ -9,12 +9,22 @@ export interface IAdmJob{
     description: string;
 }
 
+interface IAdmApplications{
+    id: number;
+    jobId: number;
+    userId: number;
+    name: string;
+    email: string;
+    linkedin: string;
+}
+
 interface IAdmJobList{
     children: React.ReactNode
 }
 
 interface IAdmJobListContext{
     admJob: IAdmJob[];
+    admApplication: IAdmApplications[]
     deleteVacancy: (jobId: number) => void;
     editVacanciesJob: (edit: IAdmJob) => void;
 }
@@ -26,6 +36,9 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
     const token = localStorage.getItem("@Jobs:token")
 
     const [ admJob, setAdmJob] = useState<IAdmJob[]>([])
+    const [ admApplication, setAdmApplication] = useState<IAdmApplications[]>([])
+    console.log(admApplication)
+    console.log(admJob)
     const [ editForm, setEditForm] = useState<IAdmJob | null>(null)
    
     useEffect(() =>{
@@ -42,6 +55,21 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
             }
         }
         loadAdmJobs()
+
+        const loadAdmApplications = async () =>{
+            try {
+                const { data } = await api.get(`/applications?userId=${userId}&_expand=job`,{
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                console.log("data: ",data)
+                setAdmApplication(data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        loadAdmApplications()
     },[])
 
     
@@ -75,7 +103,7 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
     }
 
     return(
-        <AdmListContext.Provider value={{ admJob, deleteVacancy, editVacanciesJob }}>
+        <AdmListContext.Provider value={{ admJob, admApplication, deleteVacancy, editVacanciesJob }}>
             {children}
         </AdmListContext.Provider>
     )
