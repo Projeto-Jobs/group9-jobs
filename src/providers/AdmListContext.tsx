@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react"
+import React, { Dispatch, SetStateAction, createContext, useEffect, useState } from "react"
 import { api } from "../services/api"
 
 export interface IAdmJob{
@@ -17,17 +17,18 @@ interface IAdmJobListContext{
     admJob: IAdmJob[];
     deleteVacancy: (jobId: number) => void;
     editVacanciesJob: (edit: IAdmJob) => void;
+    teste: (job:IAdmJob) => void;
 }
 
 export const AdmListContext = createContext({} as IAdmJobListContext)
 
-export const AdmJobListContext = ({children}: IAdmJobList) =>{
+export const AdmListProvider = ({children}: IAdmJobList) =>{
     const userId = localStorage.getItem("@Jobs:userId")
     const token = localStorage.getItem("@Jobs:token")
 
     const [ admJob, setAdmJob] = useState<IAdmJob[]>([])
 
-    const [ clickdJob, setClickdJob] = useState<IAdmJob[]>([])
+     const [selectedJob, setSelectedJob] = useState<IAdmJob>()
    
     useEffect(() =>{
         const loadAdmJobs = async () =>{
@@ -59,20 +60,33 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
         }
     }
 
+    const teste = (job: IAdmJob) =>{
+        console.log(job)
+        setSelectedJob(job)
+    }
+
+    console.log(selectedJob)
      const editVacanciesJob = async (formData: IAdmJob) => {
-        try {
-            await api.put(`/jobs/${formData.id}`, formData, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                  },
-            })
-         
-        } catch (error) {
-        }
+            try {
+                await api.put(`/jobs/${selectedJob?.id}`, {
+                    position:formData.position,
+                    sallary:Number(formData.sallary),
+                    description:formData.description,
+                   }, {
+                       headers: {
+                           Authorization: `Bearer ${token}`,
+                       },
+               })
+               const updatedJobs = admJob.map((job) =>
+               job.id === formData.id ? formData : job)
+               setAdmJob(updatedJobs);
+           } catch (error) {
+               console.log(error)
+           }
     }
 
     return(
-        <AdmListContext.Provider value={{ admJob, deleteVacancy, editVacanciesJob}}>
+        <AdmListContext.Provider value={{ admJob, deleteVacancy, editVacanciesJob, teste}}>
             {children}
         </AdmListContext.Provider>
     )

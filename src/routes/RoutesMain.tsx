@@ -9,7 +9,7 @@ import { ApplicationProvider } from "../providers/ModalContext";
 import { LoginProvider } from "../providers/LoginContext";
 import { ProtectedRoutes } from "../components/ProtectedRoutes";
 import { PublicRoutes } from "../components/PublicRoutes";
-import { AdmJobListContext} from "../providers/AdmListContext";
+import { AdmListProvider } from "../providers/AdmListContext";
 import { CreateVacancyPage } from "../pages/AdmCreateVacancyPage";
 import { AdminProvider } from "../providers/AdminContext";
 import { EditVacancys } from "../components/AdmList/editVacancys";
@@ -48,14 +48,9 @@ export const RoutesMain = () => {
             <CreateVacancyPage/>
           </AdminProvider>}/>
 
-
-          <Route path="EditPage" element={
-                      <AdmJobListContext>
-                      <EditVacancys />
-                      </AdmJobListContext>
-          } />
-
-
+          <Route path="EditPage" element={<AdmListProvider>
+          <EditVacancys/>
+          </AdmListProvider>} />
           
           <Route path="/CreateVacancyPage" element={
           <AdminProvider>
@@ -66,10 +61,10 @@ export const RoutesMain = () => {
           path="/AdminPage" 
           element={
             <LoginProvider>
-              <AdmJobListContext>
+              <AdmListProvider>
                 <Administration/>
                 
-              </AdmJobListContext>
+              </AdmListProvider>
             </LoginProvider>
           }
           />
