@@ -1,47 +1,49 @@
-import { ChangeEvent, useContext, useState } from "react"
+import { useContext } from "react"
 import { AdmListContext, IAdmJob } from "../../providers/AdmListContext"
+import { InputField } from "../InputField"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { SchemaEdit } from "./editSchema"
 
-export const EditVacancys = ({ formData, onSubmit }: { formData: IAdmJob; onSubmit: (data: IAdmJob) => void }) => {
+type TEdit = z.infer<typeof SchemaEdit>
 
-    const { editVacanciesJob } = useContext(AdmListContext)
+export const EditVacancys = () => {
 
-    const [editData, setEditData] = useState<IAdmJob>(formData)
+  const { editVacanciesJob } = useContext(AdmListContext)
 
-    const inputs = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setEditData((preventData) => ({
-          ...preventData,
-          [name]: value,
-        }))
-      }
+  const { register, handleSubmit, } = useForm<TEdit>();
 
-      const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        editVacanciesJob(editData);
-        onSubmit(editData);
-      }
-
-    return (
-        <div>
-            <h2>Editando: </h2>
-            <form onSubmit={handleSubmit} >
-                <input type="text" 
-                name="position" 
-                value={editData.position}
-                onChange={inputs}
-                 />
-                <input type="number" 
-                name="sallary" 
-                value={editData.sallary}
-                onChange={inputs}
-                 />
-                <textarea 
-                name="" 
-                id=""></textarea>
-                <button type="submit">Atualizar</button>
+  const submit = (formData: TEdit) => {
+    const userId = Number(localStorage.getItem("@Jobs:userId"))
+    const { id, ...data } = formData; 
+    const updatedData: IAdmJob = {
+      userId,
+      id: id, 
+      ...data,
+    }
+    editVacanciesJob(updatedData)
+  }
 
 
-            </form>
-        </div>
-    )
+  return (
+    <div>
+      <h2>Editando: </h2>
+      <form onSubmit={handleSubmit(submit)} >
+        <InputField
+          type="text"
+
+          {...register("position")}
+        />
+        <InputField type="number"
+
+          {...register("sallary")}
+        />
+        <textarea
+          {...register("description")}
+        ></textarea>
+        <button type="submit">Atualizar</button>
+
+      </form>
+    </div>
+  )
 }

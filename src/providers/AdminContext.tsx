@@ -35,6 +35,7 @@ export const AdminProvider = ({ children }: IAdminProviderProps) => {
   const [Applies, setApplies] = useState<ICompanyApplies[]>([]);
   console.log(Applies);
   
+  
   const navigate = useNavigate()
 
   const token = localStorage.getItem("@Jobs:token")
