@@ -8,11 +8,13 @@ import { Administration } from "../pages/AdminPage";
 import { ApplicationProvider } from "../providers/ModalContext";
 import { ProtectedRoutes } from "../components/ProtectedRoutes";
 import { PublicRoutes } from "../components/PublicRoutes";
-import { AdmJobListContext } from "../providers/AdmListContext";
+import { AdmListProvider } from "../providers/AdmListContext";
 import { CreateVacancyPage } from "../pages/AdmCreateVacancyPage";
 import { AdminProvider } from "../providers/AdminContext";
+import { EditVacancys } from "../components/AdmList/editVacancys";
 
 export const RoutesMain = () => {
+
   return (
     <Routes>
       <Route element={<PublicRoutes />}>
@@ -37,33 +39,32 @@ export const RoutesMain = () => {
       </Route>
 
       <Route element={<ProtectedRoutes />}>
-        <Route
-          path="/CreateVacancyPage"
-          element={
-            <AdminProvider>
-              <CreateVacancyPage />
-            </AdminProvider>
-          }
-        />
-
-        <Route
-          path="/CreateVacancyPage"
-          element={
-            <AdminProvider>
-              <CreateVacancyPage />
-            </AdminProvider>
-          }
-        />
-
+        <Route path="/CreateVacancyPage" element={<CreateVacancyPage />} />
+        <Route path="EditPage" element={<EditVacancys />} />
+        <Route path="/CreateVacancyPage" element={<CreateVacancyPage />} />
         <Route
           path="/AdminPage"
           element={
-              <AdmJobListContext>
+            <LoginProvider>
                 <Administration />
-              </AdmJobListContext>
+            </LoginProvider>
+          }
+        />
+        <Route
+          path="/CreateVacancyPage"
+          element={
+            <CreateVacancyPage />
+          }
+        />
+
+        <Route
+          path="/CreateVacancyPage"
+          element={
+            <CreateVacancyPage />
           }
         />
       </Route>
+
     </Routes>
   )
 }

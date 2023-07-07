@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react"
+import React, { Dispatch, SetStateAction, createContext, useEffect, useState } from "react"
 import { api } from "../services/api"
 
 export interface IAdmJob{
@@ -9,34 +9,26 @@ export interface IAdmJob{
     description: string;
 }
 
-interface IAdmApplications{
-    id: number;
-    jobId: number;
-    userId: number;
-    name: string;
-    email: string;
-    linkedin: string;
-    job: IAdmJob;
-}
-
 interface IAdmJobList{
     children: React.ReactNode
 }
 
 interface IAdmJobListContext{
     admJob: IAdmJob[];
-    admApplication: IAdmApplications[]
     deleteVacancy: (jobId: number) => void;
     editVacanciesJob: (edit: IAdmJob) => void;
+    teste: (job:IAdmJob) => void;
 }
 
 export const AdmListContext = createContext({} as IAdmJobListContext)
 
-export const AdmJobListContext = ({children}: IAdmJobList) =>{
+export const AdmListProvider = ({children}: IAdmJobList) =>{
     const userId = localStorage.getItem("@Jobs:userId")
     const token = localStorage.getItem("@Jobs:token")
 
     const [ admJob, setAdmJob] = useState<IAdmJob[]>([])
+
+     const [selectedJob, setSelectedJob] = useState<IAdmJob>()
     const [ admApplication, setAdmApplication] = useState<IAdmApplications[]>([])
     const [ editForm, setEditForm] = useState<IAdmJob | null>(null)
     console.log(editForm);
@@ -55,25 +47,8 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
             }
         }
         loadAdmJobs()
-
-        const loadAdmApplications = async () =>{
-            try {
-                const { data } = await api.get(`/applications?userId=${userId}&_expand=job`,{
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                })
-                console.log("data: ",data)
-                setAdmApplication(data)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        loadAdmApplications()
     },[])
-
     
-
     const deleteVacancy = async (jobId: number) => {
         try {
             await api.delete(`jobs/${jobId}`, {
@@ -82,28 +57,39 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
                   }
             })
             const deleteJobs = admJob.filter((job) => job.id !== jobId)
-            setAdmJob(deleteJobs)
+            setAdmJob(deleteJobs)    
         } catch (error) {
            console.log(error) 
         }
     }
 
-     const editVacanciesJob = async (edit: IAdmJob) => {
-        try {
-            await api.put(`jobs/${edit.id}`, edit, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                  },
-            })
-            const editJobs = admJob.map((job) => job.id === edit.id ? edit : job )
-            setAdmJob(editJobs)
-            setEditForm(null)
-        } catch (error) {
-        }
+    const teste = (job: IAdmJob) =>{
+        console.log(job)
+        setSelectedJob(job)
+    }
+
+    console.log(selectedJob)
+     const editVacanciesJob = async (formData: IAdmJob) => {
+            try {
+                await api.put(`/jobs/${selectedJob?.id}`, {
+                    position:formData.position,
+                    sallary:Number(formData.sallary),
+                    description:formData.description,
+                   }, {
+                       headers: {
+                           Authorization: `Bearer ${token}`,
+                       },
+               })
+               const updatedJobs = admJob.map((job) =>
+               job.id === formData.id ? formData : job)
+               setAdmJob(updatedJobs);
+           } catch (error) {
+               console.log(error)
+           }
     }
 
     return(
-        <AdmListContext.Provider value={{ admJob, admApplication, deleteVacancy, editVacanciesJob }}>
+        <AdmListContext.Provider value={{ admJob, deleteVacancy, editVacanciesJob, teste}}>
             {children}
         </AdmListContext.Provider>
     )
