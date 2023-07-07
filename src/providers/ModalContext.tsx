@@ -26,6 +26,7 @@ export const ApplicationProvider: React.FC<ApplicationProviderProps> = ({
 }) => {
   const registerApplication = async (application: Application) => {
     try {
+      console.log(application);
       await api.post("/applications", application)
       
     } catch (error) {
