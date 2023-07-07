@@ -43,6 +43,7 @@ export const EditVacancys = () => {
         ></textarea>
         <button type="submit">Atualizar</button>
 
+
       </form>
     </div>
   )

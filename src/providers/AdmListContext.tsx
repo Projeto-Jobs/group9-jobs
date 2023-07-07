@@ -28,7 +28,7 @@ export const AdmListProvider = ({children}: IAdmJobList) =>{
 
     const [ admJob, setAdmJob] = useState<IAdmJob[]>([])
 
-     const [selectedJob, setSelectedJob] = useState<IAdmJob>()
+    const [selectedJob, setSelectedJob] = useState<IAdmJob | undefined>(undefined);
    
     useEffect(() =>{
         const loadAdmJobs = async () =>{
@@ -61,12 +61,12 @@ export const AdmListProvider = ({children}: IAdmJobList) =>{
     }
 
     const teste = (job: IAdmJob) =>{
-        console.log(job)
-        setSelectedJob(job)
+        setSelectedJob({...job})
     }
 
     console.log(selectedJob)
      const editVacanciesJob = async (formData: IAdmJob) => {
+
             try {
                 await api.put(`/jobs/${selectedJob?.id}`, {
                     position:formData.position,
@@ -78,8 +78,9 @@ export const AdmListProvider = ({children}: IAdmJobList) =>{
                        },
                })
                const updatedJobs = admJob.map((job) =>
-               job.id === formData.id ? formData : job)
+               job.id === selectedJob?.id ? { ...selectedJob, ...formData } : job);
                setAdmJob(updatedJobs);
+               
            } catch (error) {
                console.log(error)
            }
