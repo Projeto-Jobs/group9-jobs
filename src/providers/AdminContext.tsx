@@ -1,5 +1,5 @@
-import React, { createContext, useEffect, useState } from "react";
-import { api } from "../services/api";
+import React, { createContext, useEffect, useState } from "react"
+import { api } from "../services/api"
 import { useNavigate } from 'react-router-dom'
 export interface ICompanyJob {
   userId: number;
@@ -73,7 +73,7 @@ export const AdminProvider = ({ children }: IAdminProviderProps) => {
 
   const newVacancy = async (formData: INewVancancy) => {
     try {
-      const { data } = await api.post("/jobs/", { ...formData, userId: userId }, {
+      const { data } = await api.post("/jobs/", { ...formData, userId: Number(userId) }, {
         headers: {
           Authorization: `Bearer ${token}`
         }

@@ -5,7 +5,7 @@ import { StyledVacancyForm } from "./styles"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { validationVacancySchema } from "./validationCreateVacancyForm"
 import { z } from "zod"
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { AdminContext } from "../../providers/AdminContext"
 
 
@@ -19,7 +19,6 @@ export const CreateVacancyForm = () => {
     })
 
     const submit = (formData:TCreateVacancy) => {
-        console.log(formData)
         newVacancy(formData)       
     }
 
