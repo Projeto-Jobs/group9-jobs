@@ -40,7 +40,7 @@ export const VacancyPage = () => {
   };
   return (
     <StyledVacancyPage>
-      <StyledTitle1>Busca de Vagas</StyledTitle1>
+      <StyledTitle1 color="blue" >Busca de Vagas</StyledTitle1>
       <p>Digite o que você está procurando:</p>
       <div>
         <StyledInput

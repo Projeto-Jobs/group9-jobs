@@ -11,7 +11,7 @@ export const ListVacancys = () => {
     return(
         <ul>
             {admJob.map((job) => (
-                <LiVacancyStyle id={JSON.stringify(job.id)}>
+                <LiVacancyStyle key={job.id} id={JSON.stringify(job.id)}>
                     <H3VacancyStyle>{job.position}</H3VacancyStyle>
                     <figure>
                       <img src={pencil} alt="Lápis" />
