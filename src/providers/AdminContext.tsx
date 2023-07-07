@@ -8,7 +8,6 @@ export interface ICompanyJob {
   sallary: number;
   description: string;
 }
-
 export interface ICompanyApplies {
   id: number;
   jobId: number;
@@ -17,15 +16,12 @@ export interface ICompanyApplies {
   email: string;
   linkedin: string;
 }
-
 interface IAdminProviderProps {
   children: React.ReactNode;
 }
-
 interface IRegisterNewVacancy {
   newVacancy: (formData: INewVancancy) => Promise<void>;
 }
-
 interface INewVancancy {
   position: string,
   sallary?: number,
@@ -40,6 +36,7 @@ export const AdminProvider = ({ children }: IAdminProviderProps) => {
   console.log(Applies);
   
   const navigate = useNavigate()
+
   const token = localStorage.getItem("@Jobs:token")
   const userId = localStorage.getItem("@Jobs:userId")
 
@@ -75,7 +72,7 @@ export const AdminProvider = ({ children }: IAdminProviderProps) => {
 
   const newVacancy = async (formData: INewVancancy) => {
     try {
-      const { data } = await api.post("/jobs/", { ...formData, userId: Number(userId) }, {
+      const { data } = await api.post("/jobs/", { ...formData, userId: userId}, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -86,7 +83,6 @@ export const AdminProvider = ({ children }: IAdminProviderProps) => {
       console.error(error)
     }
   }
-
 
   return (
     <AdminContext.Provider value={{ newVacancy }}>

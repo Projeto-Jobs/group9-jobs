@@ -1,4 +1,4 @@
-import { styled } from "styled-components"
+import styled from "styled-components"
 
 
 export const HeaderStyle = styled.header`
@@ -6,13 +6,17 @@ export const HeaderStyle = styled.header`
    justify-content: space-between;
    align-items: center;
    padding: 20px 0;
-   
+   animation: appears 2s ease-in-out;
+   :link {
+      text-decoration: none;
+   }
 `
 
 export const DivHeader = styled.div`
    display: flex;
    align-items: center;
-   gap: 10px;
+   gap: 35px;
+   
 `
 
 export const ButtonHeader = styled.button`
@@ -21,4 +25,9 @@ export const ButtonHeader = styled.button`
    font-weight: 700;
    font-size: 1rem;
    color: var(--color-blue);
+   transition: 1s ease-in-out;
+
+   :hover {
+      transform: scale(1.3);
+   }
 `
