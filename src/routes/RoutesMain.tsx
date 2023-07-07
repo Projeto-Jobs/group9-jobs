@@ -6,7 +6,6 @@ import { RegisterPage } from "../pages/RegisterPage";
 import { RegisterProvider } from "../providers/RegisterContext";
 import { Administration } from "../pages/AdminPage";
 import { ApplicationProvider } from "../providers/ModalContext";
-import { LoginProvider } from "../providers/LoginContext";
 import { ProtectedRoutes } from "../components/ProtectedRoutes";
 import { PublicRoutes } from "../components/PublicRoutes";
 import { AdmJobListContext } from "../providers/AdmListContext";
