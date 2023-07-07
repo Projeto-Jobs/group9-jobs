@@ -6,7 +6,7 @@ export const HeaderLoginStyle = styled.header`
    justify-content: space-between;
    align-items: center;
    padding: 20px 0;
-
+   animation: appears 2s ease-in-out;
    > div {
       display: flex;
       align-items: center;

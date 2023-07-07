@@ -123,10 +123,11 @@ export const StyledGlobalStyle = createGlobalStyle`
 `
 
 export const StyledButton = styled.button`
-    padding: 15px;
+    padding: 0 34px;
+    height: 58px;
     border-radius: 255px;
     background: var(--color-blue);
-
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -149,7 +150,8 @@ export const StyledOutLineButton = styled.button`
     font-size: 17px;
     font-family: Montserrat;
     background-color: var(--color-white);
-    :hover {
+    transition: 0.5s;
+    &:hover {
         color: var(--color-white);
         background-color: var(--color-blue);
     }

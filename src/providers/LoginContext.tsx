@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import { api } from "../services/api"
 import { useNavigate } from "react-router-dom"
 import { JobsListContext } from "./JobsListContext"
@@ -19,6 +19,8 @@ interface ILoginContext{
     userLogin: (formData: any) => Promise<void>;
     userLogout: () => void;
     initials: string;
+    token: string | null;
+    login: ILoginUser | null;
 }
 interface IUser{
     email: string;
@@ -30,10 +32,14 @@ export const LoginContext = createContext({} as ILoginContext)
 export const LoginProvider = ({children}: ILoginProviderProps) =>{
     
     const [ login, setLogin] = useState<ILoginUser | null>(null)
-    console.log(login);
     
     const {setJobsList} = useContext(JobsListContext);
-    
+    const [ token, setToken] = useState<string | null>(null)
+
+    useEffect(() => {
+        setToken(localStorage.getItem("@Jobs:token"))
+    }, [])
+
     const navigate = useNavigate()
 
     const initialLetters = (fullName: string):string => {
@@ -51,8 +57,23 @@ export const LoginProvider = ({children}: ILoginProviderProps) =>{
             return ''
           }
     }
-    const nameLS = localStorage.getItem("@Jobs:name")
+    const nameLS = login?.name
     const initials = nameLS ? initialLetters(nameLS).toUpperCase() : ''
+
+    useEffect(() => {
+        const logged = async () => {
+            try {
+                const id = localStorage.getItem("@Jobs:userId")
+                const { data } = await api.get(`/users/${id}`)
+
+                setLogin(data)
+            } catch (error) {
+                console.log(error);
+                
+            }
+        }
+        logged()
+    },[])
 
     const userLogin = async (formData: IUser) =>{
         try {
@@ -60,9 +81,8 @@ export const LoginProvider = ({children}: ILoginProviderProps) =>{
             setLogin(data.user)
             localStorage.setItem("@Jobs:token", data.accessToken)
             localStorage.setItem("@Jobs:userId", JSON.stringify(data.user.id))
-            localStorage.setItem("@Jobs:name", data.user.name)
             navigate("/AdminPage")
-            
+            setToken(data.accessToken);
         } catch (error) {
             alert("Usuário inválido")
         }
@@ -72,6 +92,8 @@ export const LoginProvider = ({children}: ILoginProviderProps) =>{
         setLogin(null)
         localStorage.removeItem("@Jobs:token")
         localStorage.removeItem("@Jobs:userId")
+
+        setToken(null);
         const reloadJobs = async () => {
             try {
               const { data } = await api.get(`/jobs?_expand=user`);
@@ -85,7 +107,7 @@ export const LoginProvider = ({children}: ILoginProviderProps) =>{
     }
 
     return(
-        <LoginContext.Provider value={ {initials, userLogin, userLogout} }>
+        <LoginContext.Provider value={ {login, initials, token, userLogin, userLogout} }>
             {children}
         </LoginContext.Provider>
     )
