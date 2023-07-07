@@ -16,56 +16,51 @@ import { AdminProvider } from "../providers/AdminContext"
 export const RoutesMain = () => {
   return (
     <Routes>
-      <Route element={<PublicRoutes/>}>
+
+      <Route element={<PublicRoutes />}>
         <Route path="/" element={
           <ApplicationProvider>
-            <ListCompany/>
+            <ListCompany />
           </ApplicationProvider>
         }/>
-        <Route path="/VacancyPage" element={<VacancyPage/>}/>
-        <Route 
-        path="/LoginPage" 
-        element={
-        <LoginProvider>
-          <LoginPage/>
-        </LoginProvider>
-        }/>
-        <Route
-          path="/RegisterPage"
-          element={
-            <RegisterProvider>
-              <RegisterPage />
-            </RegisterProvider>
-          }
-          />
-        </Route>
-        
-        <Route element={<ProtectedRoutes/>}>
-          <Route path="/CreateVacancyPage" element={
-          <AdminProvider>
-            <CreateVacancyPage/>
-          
-          </AdminProvider>}/>
-          
-          <Route path="/CreateVacancyPage" element={
-          <AdminProvider>
-            <CreateVacancyPage/>
-          </AdminProvider>}/>
-          
-          <Route 
-          path="/AdminPage" 
-          element={
-            <LoginProvider>
-              <AdmJobListContext>
-                <Administration/>
-                
-              </AdmJobListContext>
-            </LoginProvider>
-          }
-          />
-        </Route>
 
+        <Route path="/VacancyPage" element={<VacancyPage />} />
+
+        <Route path="/LoginPage" element={
+          <LoginProvider>
+            <LoginPage />
+          </LoginProvider>
+        }/>
+
+        <Route path="/RegisterPage" element={
+          <RegisterProvider>
+            <RegisterPage />
+          </RegisterProvider>
+        }/>
+      </Route>
+
+      <Route element={<ProtectedRoutes />}>
+        <Route path="/CreateVacancyPage" element={
+          <AdminProvider>
+            <CreateVacancyPage />
+          </AdminProvider>
+        }/>
+
+        <Route path="/CreateVacancyPage" element={
+          <AdminProvider>
+            <CreateVacancyPage />
+          </AdminProvider>
+        }/>
+
+        <Route path="/AdminPage" element={
+          <LoginProvider>
+            <AdmJobListContext>
+              <Administration />
+            </AdmJobListContext>
+          </LoginProvider>
+        }/>
+      </Route>
 
     </Routes>
-  );
-};
+  )
+}
