@@ -65,7 +65,6 @@ export const LoginProvider = ({children}: ILoginProviderProps) =>{
             try {
                 const id = localStorage.getItem("@Jobs:userId")
                 const { data } = await api.get(`/users/${id}`)
-
                 setLogin(data)
             } catch (error) {
                 console.log(error);
