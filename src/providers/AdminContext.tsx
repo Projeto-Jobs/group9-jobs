@@ -38,7 +38,7 @@ export const AdminProvider = ({ children }: IAdminProviderProps) => {
   const navigate = useNavigate()
 
   const token = localStorage.getItem("@Jobs:token")
-  const userId = localStorage.getItem("@Jobs:userId")
+  const userId = Number(localStorage.getItem("@Jobs:userId"))
 
   useEffect(() => {
     const loadCompanyJobs = async () => {
