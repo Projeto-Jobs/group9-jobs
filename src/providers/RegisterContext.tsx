@@ -1,5 +1,6 @@
 import React, { createContext } from "react"
-import { api } from "../services/api";
+import { api } from "../services/api"
+import { useNavigate } from 'react-router-dom'
 
 interface IRegisterContextProps {
     registerUser: (formData: IUser) => Promise<void>
@@ -18,10 +19,13 @@ interface IUser {
 
 export const RegisterProvider = ({ children }: IRegisterProviderProps) => {
 
-    const registerUser = async (formData: IUser) => {
+    const navigate = useNavigate()
+
+    const registerUser = async ({name, email, password}: IUser) => {
         try {
-            const { data } = await api.post('/users', formData)
+            const { data } = await api.post('/users',{name, email, password})
             console.log(data);
+            navigate("/LoginPage")
             
         } catch (error) {
             console.error(error)

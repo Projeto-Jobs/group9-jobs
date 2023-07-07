@@ -1,26 +1,25 @@
-import { LoginPage } from "./pages/LoginPage"
 import { StyledGlobalStyle } from "./styles/Global"
 import { StyledReset } from "./styles/Reset"
 import { JobsListProvider } from "./providers/JobsListContext"
 import { RoutesMain } from "./routes/RoutesMain"
-import { RegisterPage } from "./pages/RegisterPage"
-import { RegisterProvider } from "./providers/RegisterContext"
-
-
+import { Header } from "./components/Header"
+import { HeaderLogin } from "./components/HeaderLogin"
+import { LoginProvider } from "./providers/LoginContext"
 
 
 export const App = () => {
+
+  const token = localStorage.getItem("@Jobs:token")
+
   return (
     <>
       <StyledReset />
       <StyledGlobalStyle />
-{/* 
-      <LoginPage/>
-
-      <RegisterProvider>
-        <RegisterPage />
-      </RegisterProvider> */}
-
+      
+      <LoginProvider>
+        {token ? <HeaderLogin/> : <Header/>}
+      </LoginProvider>
+      
       <JobsListProvider>
         <RoutesMain />
       </JobsListProvider>
