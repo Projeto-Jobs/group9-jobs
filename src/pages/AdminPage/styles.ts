@@ -6,35 +6,41 @@ export const AdmStyled = styled.div`
     font-family: Montserrat;
     display: flex;
     flex-direction: column;
-    gap: 30px;
 
     header{
         display: flex;
         justify-content: space-between;
     }
-    h1{
-        color: var(--color-blue);
-        font-size: 64px;
-        line-height: 78.02px;
-        font-weight: 700;
+    #apresentation-logged{
+        margin-top: 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
     }
 
     .div_Span{
         display: flex;
-        gap: 10px;
-        font-weight: 700;
-    }
-    
-    h2{
-    color: var(--color-blue);
-    font-size: 64px;
-    line-height: 78.02px;
-    font-weight: 700;
+        gap: 60px;
+        margin-top: 30px;
+        > p {
+            transition: .3s;
+            cursor: pointer;
+            &:hover{
+                color: var(--color-blue);
+            }
+        }
     }
 
     .div_Span--button{
         display: flex;
         justify-content: space-between;
+        align-items: center;
+    }
+    .container-list{
+        display: flex;
+        flex-direction: column;
+        gap: 46px;
+        margin-top: 26px;
     }
 
 `
