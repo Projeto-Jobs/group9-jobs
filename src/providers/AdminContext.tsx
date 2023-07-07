@@ -37,6 +37,8 @@ export const AdminContext = createContext<IRegisterNewVacancy>({} as IRegisterNe
 export const AdminProvider = ({ children }: IAdminProviderProps) => {
   const [jobs, setJobs] = useState<ICompanyJob[]>([]);
   const [Applies, setApplies] = useState<ICompanyApplies[]>([]);
+  console.log(Applies);
+  
   const navigate = useNavigate()
   const token = localStorage.getItem("@Jobs:token")
   const userId = localStorage.getItem("@Jobs:userId")
@@ -73,7 +75,7 @@ export const AdminProvider = ({ children }: IAdminProviderProps) => {
 
   const newVacancy = async (formData: INewVancancy) => {
     try {
-      const { data } = await api.post("/jobs/", { ...formData, userId: userId }, {
+      const { data } = await api.post("/jobs/", { ...formData, userId: Number(userId) }, {
         headers: {
           Authorization: `Bearer ${token}`
         }

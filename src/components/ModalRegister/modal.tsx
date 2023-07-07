@@ -25,8 +25,8 @@ export const ModalRegister: React.FC<ModalRegisterProps> = ({ isOpen, onClose })
   const { currentJob } = useContext(JobsListContext)
 
   const [formData, setFormData] = useState<Application>({
-    jobId: 0,
-    userId: 0,
+    jobId: currentJob.id,
+    userId: currentJob.user.id,
     name: "",
     email: "",
     linkedin: "",

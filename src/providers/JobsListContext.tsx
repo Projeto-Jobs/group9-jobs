@@ -33,7 +33,7 @@ export const JobsListContext = createContext({} as IJobsListContext);
 export const JobsListProvider = ({ children }: IJobsListProviderProps) => {
   const [jobsList, setJobsList] = useState<IJob[]>([]);
   const [filteredList, setFilteredList] = useState<IJob[]>([]);
-  const [currentJob, setCurrentJob] = useState<IJob>({});
+  const [currentJob, setCurrentJob] = useState<IJob>({} as IJob);
 
   useEffect(() => {
     const loadJobs = async () => {
