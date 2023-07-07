@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import { api } from "../services/api"
 import { useNavigate } from "react-router-dom"
 import { JobsListContext } from "./JobsListContext"
@@ -23,6 +23,7 @@ interface ILoginContext{
     login: ILoginUser | null;
     userLogin: (formData: any) => Promise<void>;
     userLogout: () => void;
+    token: string | null;
 }
 
 interface IUser{
@@ -35,6 +36,11 @@ export const LoginContext = createContext({} as ILoginContext)
 export const LoginProvider = ({children}: ILoginProviderProps) =>{
     const [ login, setUserLogin] = useState<ILoginUser | null>(null)
     const {setJobsList} = useContext(JobsListContext);
+    const [ token, setToken] = useState<string | null>(null)
+
+    useEffect(() => {
+        setToken(localStorage.getItem("@Jobs:token"))
+    }, [])
     
     const navigate = useNavigate()
     const userLogin = async (formData: IUser) =>{
@@ -44,6 +50,7 @@ export const LoginProvider = ({children}: ILoginProviderProps) =>{
             localStorage.setItem("@Jobs:token", data.accessToken)
             localStorage.setItem("@Jobs:userId", JSON.stringify(data.user.id))
             navigate("/AdminPage")
+            setToken(data.accessToken);
         } catch (error) {
             alert("Usuário inválido")
         }
@@ -53,6 +60,7 @@ export const LoginProvider = ({children}: ILoginProviderProps) =>{
         setUserLogin(null)
         localStorage.removeItem("@Jobs:token")
         localStorage.removeItem("@Jobs:userId")
+        setToken(null);
         const reloadJobs = async () => {
             try {
               const { data } = await api.get(`/jobs?_expand=user`);
@@ -66,7 +74,7 @@ export const LoginProvider = ({children}: ILoginProviderProps) =>{
     }
 
     return(
-        <LoginContext.Provider value={ {login, userLogin, userLogout} }>
+        <LoginContext.Provider value={ {login, token, userLogin, userLogout} }>
             {children}
         </LoginContext.Provider>
     )
