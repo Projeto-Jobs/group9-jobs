@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, createContext, useEffect, useState } from "react"
+import React, { createContext, useEffect, useState } from "react"
 import { api } from "../services/api"
 
 export interface IAdmJob{
@@ -28,10 +28,7 @@ export const AdmListProvider = ({children}: IAdmJobList) =>{
 
     const [ admJob, setAdmJob] = useState<IAdmJob[]>([])
 
-     const [selectedJob, setSelectedJob] = useState<IAdmJob>()
-    const [ admApplication, setAdmApplication] = useState<IAdmApplications[]>([])
-    const [ editForm, setEditForm] = useState<IAdmJob | null>(null)
-    console.log(editForm);
+    const [selectedJob, setSelectedJob] = useState<IAdmJob | undefined>(undefined);
    
     useEffect(() =>{
         const loadAdmJobs = async () =>{
@@ -64,12 +61,12 @@ export const AdmListProvider = ({children}: IAdmJobList) =>{
     }
 
     const teste = (job: IAdmJob) =>{
-        console.log(job)
-        setSelectedJob(job)
+        setSelectedJob({...job})
     }
 
     console.log(selectedJob)
      const editVacanciesJob = async (formData: IAdmJob) => {
+
             try {
                 await api.put(`/jobs/${selectedJob?.id}`, {
                     position:formData.position,
@@ -81,8 +78,9 @@ export const AdmListProvider = ({children}: IAdmJobList) =>{
                        },
                })
                const updatedJobs = admJob.map((job) =>
-               job.id === formData.id ? formData : job)
+               job.id === selectedJob?.id ? { ...selectedJob, ...formData } : job);
                setAdmJob(updatedJobs);
+               
            } catch (error) {
                console.log(error)
            }
