@@ -73,7 +73,7 @@ export const AdminProvider = ({ children }: IAdminProviderProps) => {
 
   const newVacancy = async (formData: INewVancancy) => {
     try {
-      const { data } = await api.post("/jobs/", { ...formData, userId: userId }, {
+      const { data } = await api.post("/jobs/", { ...formData, userId: Number(userId) }, {
         headers: {
           Authorization: `Bearer ${token}`
         }
