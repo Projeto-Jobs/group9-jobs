@@ -41,6 +41,7 @@ export const AdmJobListContext = ({children}: IAdmJobList) =>{
     console.log(admApplication)
     console.log(admJob)
     const [ editForm, setEditForm] = useState<IAdmJob | null>(null)
+   console.log(editForm);
    
     useEffect(() =>{
         const loadAdmJobs = async () =>{
