@@ -18,6 +18,7 @@ export const RoutesMain = () => {
 
   return (
     <Routes>
+      
       <Route element={<PublicRoutes />}>
         <Route
           path="/"
@@ -57,15 +58,8 @@ export const RoutesMain = () => {
             <CreateVacancyPage />
           }
         />
-
-        <Route
-          path="/CreateVacancyPage"
-          element={
-            <CreateVacancyPage />
-          }
-        />
+        
       </Route>
-
     </Routes>
   );
 };
