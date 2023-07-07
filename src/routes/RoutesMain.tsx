@@ -6,13 +6,11 @@ import { RegisterPage } from "../pages/RegisterPage";
 import { RegisterProvider } from "../providers/RegisterContext";
 import { Administration } from "../pages/AdminPage";
 import { ApplicationProvider } from "../providers/ModalContext";
-import { LoginProvider } from "../providers/LoginContext";
 import { ProtectedRoutes } from "../components/ProtectedRoutes";
 import { PublicRoutes } from "../components/PublicRoutes";
-import { AdmListProvider } from "../providers/AdmListContext";
 import { CreateVacancyPage } from "../pages/AdmCreateVacancyPage";
-import { AdminProvider } from "../providers/AdminContext";
 import { EditVacancys } from "../components/AdmList/editVacancys";
+import { LoginProvider } from "../providers/LoginContext";
 
 export const RoutesMain = () => {
 
@@ -61,5 +59,5 @@ export const RoutesMain = () => {
         
       </Route>
     </Routes>
-  );
-};
+  )
+}

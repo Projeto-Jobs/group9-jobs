@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, createContext, useEffect, useState } from "react"
+import React, { createContext, useEffect, useState } from "react"
 import { api } from "../services/api"
 
 export interface IAdmJob{
@@ -29,11 +29,6 @@ export const AdmListProvider = ({children}: IAdmJobList) =>{
     const [ admJob, setAdmJob] = useState<IAdmJob[]>([])
 
      const [selectedJob, setSelectedJob] = useState<IAdmJob>()
-    const [ admApplication, setAdmApplication] = useState<IAdmApplications[]>([])
-    console.log(admApplication)
-    console.log(admJob)
-    const [ editForm, setEditForm] = useState<IAdmJob | null>(null)
-   console.log(editForm);
    
     useEffect(() =>{
         const loadAdmJobs = async () =>{

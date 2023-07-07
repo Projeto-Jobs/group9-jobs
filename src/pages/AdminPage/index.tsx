@@ -1,13 +1,16 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Listapplications } from "../../components/AdmList/aplic"
 import { ListVacancys } from "../../components/AdmList/vacancys"
 import { AdmStyled } from "./styles"
 import { Link } from "react-router-dom"
-import { ButtonCompanyStyle } from "../../components/HeaderLogin/style"
+import { LoginContext } from "../../providers/LoginContext"
+import { StyledText, StyledTitle1} from "../../styles/Typography"
+import { StyledButton } from "../../styles/Global"
 
 export const Administration = () => {
 
    const [option, setOpetion] = useState("")
+   const {login} = useContext(LoginContext) 
 
    const OptionClick = (click: string) => {
       setOpetion(click)
@@ -16,34 +19,37 @@ export const Administration = () => {
    return (
       <AdmStyled>
          {option !== "Vagas" && option !== "Candidaturas" && (
-            <div>
-               <h1>Kenzie Academy Brasil</h1>
-               <p>Seja bem vindo (a), selecione uma das opções a baixo:</p>
+            <div id="apresentation-logged">
+               <StyledTitle1 color="blue">{login?.name}</StyledTitle1>
+               <StyledText text="paragraph">Seja bem vindo (a), selecione uma das opções a baixo:</StyledText>
             </div>
          )}
          <div className="div_Span">
-            <span onClick={(() => OptionClick("Vagas"))}>Minhas vagas</span>
-            <span onClick={(() => OptionClick("Candidaturas"))}>Minhas candidaturas</span>
+            <StyledText text="boldAlert" onClick={(() => OptionClick("Vagas"))}>Minhas vagas</StyledText>
+            <StyledText text="boldAlert" onClick={(() => OptionClick("Candidaturas"))}>Minhas candidaturas</StyledText>
          </div>
          {option === "Vagas" && (
-            <ul>
+            <div className="container-list">
                <div className="div_Span--button">
-                  <h2>Minhas vagas</h2>
+                  <StyledTitle1 color="blue">Minhas vagas</StyledTitle1>
                   <Link to="/CreateVacancyPage" style={{ textDecoration: 'none' }}>
-                     <ButtonCompanyStyle type="button">Criar vaga</ButtonCompanyStyle>
+                     <StyledButton type="button">Criar vaga</StyledButton>
                   </Link>
                </div>
-               <ListVacancys />
-            </ul>
+               <ul>
+                  <ListVacancys />
+               </ul>
+            </div>
          )}
          {option === "Candidaturas" && (
-            <ul>
-               <h2>Minhas candidaturas</h2>
-               <Listapplications />
-            </ul>
+            <div className="container-list">
+                  <StyledTitle1 color="blue">Minhas candidaturas</StyledTitle1>
+               <ul>
+                  <Listapplications />
+               </ul>
+            </div>
          )
-
-         }
+      }
       </AdmStyled>
    )
 }

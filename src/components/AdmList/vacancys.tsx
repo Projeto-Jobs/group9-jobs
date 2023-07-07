@@ -2,8 +2,9 @@ import { useContext } from "react"
 import { AdmListContext, IAdmJob } from "../../providers/AdmListContext"
 import pencil from "../../assets/pencil.svg"
 import trash from "../../assets/trash.svg"
-import { H3VacancyStyle, LiVacancyStyle } from "./style"
+import { LiVacancyStyle } from "./style"
 import { Link } from "react-router-dom"
+import { StyledTitle3 } from "../../styles/Typography"
 
 export const ListVacancys = () => {
     const { admJob, deleteVacancy, teste} = useContext(AdmListContext)
@@ -25,7 +26,7 @@ export const ListVacancys = () => {
         <ul>
             {admJob.map((job) => (
                 <LiVacancyStyle key={job.id} id={JSON.stringify(job.id)}>
-                    <H3VacancyStyle>{job.position}</H3VacancyStyle>
+                    <StyledTitle3 color="black">{job.position}</StyledTitle3>
                     <figure>
                         <Link to="/EditPage">
                             <img  onClick={() => handleClickJob(job)} src={pencil} alt="Lápis" />
