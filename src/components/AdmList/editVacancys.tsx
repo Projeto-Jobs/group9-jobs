@@ -28,7 +28,7 @@ export const EditVacancys = () => {
   return (
     <div>
       <h2>Editando: </h2>
-      <form onSubmit={handleSubmit(submit)} >
+      {/* <form onSubmit={handleSubmit(submit)} >
         <InputField
           type="text"
 
@@ -43,7 +43,8 @@ export const EditVacancys = () => {
         ></textarea>
         <button type="submit">Atualizar</button>
 
-      </form>
+
+      </form> */}
     </div>
   )
 }
