@@ -7,6 +7,7 @@ import { validationVacancySchema } from "./validationCreateVacancyForm"
 import { z } from "zod"
 import { useContext } from "react"
 import { AdminContext } from "../../providers/AdminContext"
+import plusBall from "../../assets/Plus+Ball.svg"
 
 
 type TCreateVacancy = z.infer<typeof validationVacancySchema>
@@ -40,7 +41,7 @@ export const CreateVacancyForm = () => {
                     placeholder="Descrição da vaga" />
                 <span>{errors.description?.message}</span>
             </div>
-            <StyledButton><img src="../../../src/assets/Plus+Ball.svg" alt="plus insede a ball" /> Criar vaga</StyledButton>
+            <StyledButton><img src={plusBall} alt="plus insede a ball" /> Criar vaga</StyledButton>
         </StyledVacancyForm>
     )
 }
