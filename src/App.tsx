@@ -4,7 +4,7 @@ import { JobsListProvider } from "./providers/JobsListContext";
 import { RoutesMain } from "./routes/RoutesMain";
 import { Header } from "./components/Header";
 import { HeaderLogin } from "./components/HeaderLogin";
-import { LoginContext, LoginProvider } from "./providers/LoginContext";
+import { LoginContext } from "./providers/LoginContext";
 import { useContext } from "react";
 
 export const App = () => {
