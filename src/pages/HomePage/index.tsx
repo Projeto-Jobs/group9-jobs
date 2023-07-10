@@ -67,9 +67,9 @@ export const ListCompany = () => {
                         <div id="buttonProblem">
                            <div id="profile-job">
                               {showButton !== job.id ? (
-                                 <img onClick={() => modifyButton(job.id)} src={imgMax} alt="" />
+                                 <img onClick={() => modifyButton(job.id)} src={imgMinus} alt="" />
                               ) : (
-                                 <img onClick={() => modifyButton(0)} src={imgMinus} alt="" />
+                                 <img onClick={() => modifyButton(0)} src={imgMax} alt="" />
                               )}
                               <div>
                                  <StyledText text="label">{job.user.name}</StyledText>
