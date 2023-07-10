@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import { AdmListContext } from "../../providers/AdmListContext"
-import { H3VacancyStyle, LiVApplyStyle, LiVacancyStyle } from "./style"
+import { H3VacancyStyle, LiVApplyStyle } from "./style"
 import plus from "../../assets/plus.svg"
 import minus from "../../assets/minus.svg"
 import { StyledText } from "../../styles/Typography"
