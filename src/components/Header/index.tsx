@@ -9,14 +9,14 @@ export const Header = () =>{
     return(
         <HeaderStyle>
             <figure>
-                <img src={ jobs } alt="" />
+                <Link to="/"><img src={ jobs } alt="" /></Link>
             </figure>
             <DivHeader>
                 <Link to="/LoginPage">
                     <StyledText text="boldAlert" >acesso empresa</StyledText>
                 </Link>
                 <Link to="/" style={{ textDecoration: 'none' }}>
-                    <StyledButton>Confira nossas vagas</StyledButton>
+                    <StyledButton className="vacancyButtonText">Confira nossas vagas</StyledButton>
                 </Link>
                 <Link to="/VacancyPage">
                     <ButtonHeader><img src={ scopLensBlue } alt="" /></ButtonHeader>

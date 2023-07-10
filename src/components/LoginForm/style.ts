@@ -16,6 +16,10 @@ export const SectionLoginStyle = styled.section`
       flex-direction: column;
       gap: 17px;
    }
+   .input1 {animation: minRightAppear 1s ease;}
+   .input2 {animation: minRightAppear 1.5s ease;}
+   h1 {animation: appears 2s ease;}
+   button {animation: minRightAppear 2s ease;}
 `
 
 export const SpanRegisterLoginStyle = styled.span`
@@ -23,6 +27,7 @@ export const SpanRegisterLoginStyle = styled.span`
    align-items:center;
    justify-content: center;
    gap: 5px;
+   animation: lefAppear 2s ease;
 `
 
 export const PRegisterLoginStyle = styled.p`

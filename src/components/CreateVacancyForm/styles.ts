@@ -5,7 +5,7 @@ export const StyledVacancyForm = styled.form`
     display: flex;
     gap: 10px;
     flex-direction: column;
-    margin: 0 auto;
+    margin: 2.75rem auto;
 
     textarea{
         height: 200px;
@@ -30,5 +30,12 @@ export const StyledVacancyForm = styled.form`
             padding: 0 20px;
             color: #eb3e23;
         }
+    }
+
+    .input1 {animation:minRightAppear .8s ease-in-out ;}
+    .input2 {animation:minRightAppear 1s ease-in-out ;}
+    .input3 {animation:minRightAppear 1.2s ease-in-out ;}
+    button {
+        animation:minRightAppear 1.4s ease-in-out ;
     }
 `

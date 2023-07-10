@@ -2,8 +2,9 @@ import { StyledJobDropDown } from "./styles"
 import imgMinus from "../../assets/plus.svg"
 import imgMax from "../../assets/minus.svg"
 import { SetStateAction, useContext, useState } from "react"
-import { StyledTitle3 } from "../../styles/Typography"
+import { StyledText, StyledTitle3 } from "../../styles/Typography"
 import { IJob, JobsListContext } from "../../providers/JobsListContext"
+import { StyledOutLineButton } from "../../styles/Global"
 
 interface IDropDownProps {
   item: IJob;
@@ -11,17 +12,17 @@ interface IDropDownProps {
 }
 
 export const JobDropDown = ({ item, setModal }: IDropDownProps) => {
-  const [showButton, setShowButton] = useState(true);
-  const {setCurrentJob} = useContext(JobsListContext);
-  const [showParagraph, setShowParagraph] = useState(false);
+  const [showButton, setShowButton] = useState(true)
+  const {setCurrentJob} = useContext(JobsListContext)
+  const [showParagraph, setShowParagraph] = useState(false)
 
   const modifyButton = () => {
-    setShowButton(!showButton);
-    setShowParagraph(!showParagraph);
-  };
+    setShowButton(!showButton)
+    setShowParagraph(!showParagraph)
+  }
 
   const editModal = () => {
-    setCurrentJob(item);
+    setCurrentJob(item)
     setModal(true)
   }
 
@@ -35,13 +36,13 @@ export const JobDropDown = ({ item, setModal }: IDropDownProps) => {
           <img onClick={modifyButton} src={imgMax} alt="" />
         )}
         <div>
-          <span>{item.user.name}</span>
+          <StyledText text="label">{item.user.name}</StyledText>
           <StyledTitle3 color="black">{item.position}</StyledTitle3>
         </div>
-        <button onClick={() => editModal()}>Candidatar-se</button>
+        <StyledOutLineButton onClick={() => editModal()}>Candidatar-se</StyledOutLineButton>
       </div>
-      {showParagraph && <p>{item.description}</p>}
+      {showParagraph && <StyledText text="paragraph">{item.description}</StyledText>}
       
     </StyledJobDropDown>
-  );
-};
+  )
+}

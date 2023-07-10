@@ -11,6 +11,19 @@ export const LiVacancyStyle = styled.li`
    &:hover{
       background-color: var(--color-lightblue);
    }
+
+   figure {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      img {
+         transition: all.3s;
+         cursor: pointer;
+         &:hover{
+            transform: scale(1.35);
+         }
+      }
+   }
 `
 
 export const H3VacancyStyle = styled.h3`

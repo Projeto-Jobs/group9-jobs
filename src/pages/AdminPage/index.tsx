@@ -42,7 +42,7 @@ export const Administration = () => {
             </div>
          )}
          {option === "Candidaturas" && (
-            <div className="container-list">
+            <div className="container-list container-apply">
                   <StyledTitle1 color="blue">Minhas candidaturas</StyledTitle1>
                <ul>
                   <Listapplications />
