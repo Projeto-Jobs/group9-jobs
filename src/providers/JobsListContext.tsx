@@ -14,11 +14,9 @@ export interface IJob {
     id: number;
   };
 }
-
 interface IJobsListProviderProps {
   children: React.ReactNode;
 }
-
 interface IJobsListContext {
   jobsList: IJob[];
   setJobsList: React.Dispatch<React.SetStateAction<IJob[]>>;
@@ -28,29 +26,29 @@ interface IJobsListContext {
   setCurrentJob: React.Dispatch<React.SetStateAction<IJob>> ;
 }
 
-export const JobsListContext = createContext({} as IJobsListContext);
+export const JobsListContext = createContext({} as IJobsListContext)
 
 export const JobsListProvider = ({ children }: IJobsListProviderProps) => {
-  const [jobsList, setJobsList] = useState<IJob[]>([]);
-  const [filteredList, setFilteredList] = useState<IJob[]>([]);
-  const [currentJob, setCurrentJob] = useState<IJob>({} as IJob);
+  const [jobsList, setJobsList] = useState<IJob[]>([])
+  const [filteredList, setFilteredList] = useState<IJob[]>([])
+  const [currentJob, setCurrentJob] = useState<IJob>({} as IJob)
 
   useEffect(() => {
     const loadJobs = async () => {
       try {
         const { data } = await api.get(`/jobs?_expand=user`);
-        setJobsList(data);
+        setJobsList(data)
       } catch (error) {
-        console.log(error);
+        
       }
-    };
-    loadJobs();
-  }, []);
+    }
+    loadJobs()
+  }, [])
   return (
     <JobsListContext.Provider
       value={{ jobsList, filteredList, setFilteredList, currentJob, setCurrentJob, setJobsList }}
     >
       {children}
     </JobsListContext.Provider>
-  );
-};
+  )
+}

@@ -4,14 +4,13 @@ import imgMinus from "../../assets/plus.svg"
 import imgMax from "../../assets/minus.svg"
 import { IJob, JobsListContext } from "../../providers/JobsListContext"
 import { StyledHome } from "./styles"
-import { StyledButton } from "../../styles/Global"
+import { StyledOutLineButton } from "../../styles/Global"
 import { ModalRegister } from "../../components/ModalRegister/modal"
 import { StyledText, StyledTitle2, StyledTitle3 } from "../../styles/Typography"
 
 export const ListCompany = () => {
 
    const { jobsList, setCurrentJob } = useContext(JobsListContext)
-   console.log(jobsList)
 
    const [showButton, setShowButton] = useState(0)
 
@@ -77,7 +76,7 @@ export const ListCompany = () => {
                                  <StyledTitle3 color="black">{job.position}</StyledTitle3>
                               </div>
                            </div>
-                           <StyledButton onClick={() => editModal(job)}>Cadastre-se</StyledButton>
+                           <StyledOutLineButton onClick={() => editModal(job)}>Cadastre-se</StyledOutLineButton>
                         </div>
                         <div className="description-container">
                            {showParagraph == job.id && (

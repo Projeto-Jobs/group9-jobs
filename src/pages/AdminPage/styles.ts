@@ -7,21 +7,22 @@ export const AdmStyled = styled.div`
     display: flex;
     flex-direction: column;
 
-    header{
-        display: flex;
-        justify-content: space-between;
-    }
     #apresentation-logged{
         margin-top: 26px;
         display: flex;
         flex-direction: column;
         gap: 26px;
+        animation: lefAppear 2s ease;
+        p{
+            animation: lefAppear 2s ease;
+        }
     }
 
     .div_Span{
         display: flex;
         gap: 60px;
         margin-top: 30px;
+        animation: lefAppear 2s ease;
         > p {
             transition: .3s;
             cursor: pointer;
@@ -35,12 +36,16 @@ export const AdmStyled = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
+        /* animation: lefAppear 2s ease; */
     }
     .container-list{
         display: flex;
         flex-direction: column;
         gap: 46px;
         margin-top: 26px;
+        animation: lefAppear 1s ease;
     }
+
+    .container-apply { animation: minRightAppear 1s ease;}
 
 `

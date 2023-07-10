@@ -29,13 +29,15 @@ export const LoginForm = () => {
                     placeholder="E-mail"
                     type="email"
                     errorMessage={errors.email?.message}
-                    {...register("email")} />
+                    {...register("email")} 
+                    className="input1"/>
 
                 <InputField
                     placeholder="Senha"
                     type="password"
                     errorMessage={errors.password?.message}
-                    {...register("password")} />
+                    {...register("password")} 
+                    className="input2"/>
                     
                 <StyledButton>Entrar</StyledButton>
             </form>

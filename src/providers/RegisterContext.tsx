@@ -1,6 +1,8 @@
 import React, { createContext } from "react"
 import { api } from "../services/api"
 import { useNavigate } from 'react-router-dom'
+import { toast } from "react-toastify";
+
 interface IRegisterContextProps {
     registerUser: (formData: IUser) => Promise<void>
 }
@@ -20,11 +22,11 @@ export const RegisterProvider = ({ children }: IRegisterProviderProps) => {
 
     const registerUser = async ({name, email, password}: IUser) => {
         try {
-            const { data } = await api.post('/users',{name, email, password})
-            console.log(data);
+            await api.post('/users',{name, email, password})
             navigate("/LoginPage")
+            toast.success("Usuário/Empresa criada!")
         } catch (error) {
-            console.error(error)
+            toast.error("E-mail já registrado!")
         }
     }
     
