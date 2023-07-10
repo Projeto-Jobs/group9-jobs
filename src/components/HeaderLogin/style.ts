@@ -3,29 +3,36 @@ import { styled } from "styled-components"
 
 export const HeaderLoginStyle = styled.header`
    display: flex;
-   flex-direction: row;
    justify-content: space-between;
-   margin-bottom: 30px;
-   margin-top: 10px;
-`
+   align-items: center;
+   padding: 20px 0;
+   animation: appears 2s ease-in-out;
+   > div {
+      display: flex;
+      align-items: center;
+      gap: 31px;
 
-export const ButtonCompanyStyle = styled.button`
-   padding: 10px;
-   margin-right: 10px;
-   font-weight: 700;
-   font-size: 17px;
-   font-family: Montserrat;
-   color: white;
-   background-color: var(--color-blue);
-   border-radius: 30px;
+      #leave-button {
+         :hover {
+            background-color: var(--color-blue);
+            color: var(--color-white);
+         }
+      }
+   }
 `
-export const ButtonLeaveStyle = styled.button`
-   font-weight: 700;
+export const ButtonCompanyStyle = styled.button`
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   color: white;
    font-size: 17px;
+   font-weight: 700;
    font-family: Montserrat;
-   color: var(--color-blue);
-   background-color: white;
-   border: 1px solid var(--color-blue);
-   padding: 10px;
-   border-radius: 30px;
+
+   width: 51px;
+   height: 51px;
+   background-color: var(--color-blue);
+   border-radius: 50%;
+
 `

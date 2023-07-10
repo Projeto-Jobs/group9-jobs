@@ -1,54 +1,52 @@
-import LoginPicture from "../../assets/LoginPicture.svg"
 import { StyledButton } from "../../styles/Global"
 import { Link } from "react-router-dom"
-import { H1LoginStyle, InputLoginStyle, PQuestionLoginStyle, PRegisterLoginStyle, SectionLoginStyle, SpanButtonLogin, SpanRegisterLoginStyle } from "./style"
-import {  useForm, SubmitHandler } from "react-hook-form"
+import { PRegisterLoginStyle, SectionLoginStyle, SpanRegisterLoginStyle } from "./style"
+import { useForm, SubmitHandler } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { TLogin, loginFormSchema } from "./loginFormSchema"
 import { useContext } from "react"
 import { LoginContext } from "../../providers/LoginContext"
+import { StyledText, StyledTitle1 } from "../../styles/Typography"
+import { InputField } from "../InputField"
 
 
-export const LoginForm = () =>{
-    const { register, handleSubmit, formState: { errors }} = useForm<TLogin>({
+export const LoginForm = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm<TLogin>({
         resolver: zodResolver(loginFormSchema)
     })
 
-    const {userLogin} = useContext(LoginContext)
-    
-    const submit: SubmitHandler<TLogin> = async (formData) =>{
+    const { userLogin } = useContext(LoginContext)
+
+    const submit: SubmitHandler<TLogin> = async (formData) => {
         userLogin(formData)
     }
-    
-    return(
+
+    return (
         <SectionLoginStyle>
-            <figure>
-                <img src={ LoginPicture } alt="" />
-            </figure>
-            <form onSubmit={handleSubmit(submit)}>
-                <H1LoginStyle>Faça login</H1LoginStyle>
-                <InputLoginStyle 
-                placeholder="E-mail"
-                type="email"
-                {...register("email")}
-                />
-                {errors.email?.message}
-                <InputLoginStyle 
-                placeholder="Senha"
-                type="password"
-                {...register("password")}
-                />
-                {errors.password?.message}
-                <SpanButtonLogin>
-                  <StyledButton>Entrar</StyledButton>
-                </SpanButtonLogin>
-                <SpanRegisterLoginStyle>
-                  <PQuestionLoginStyle>Não possui cadastro?</PQuestionLoginStyle>
-                  <Link to="/RegisterPage" style={{ textDecoration: 'none' }}>
-                      <PRegisterLoginStyle>Cadastre-se</PRegisterLoginStyle>
-                  </Link>
-                </SpanRegisterLoginStyle>
+            <StyledTitle1 color="blue">Faça login</StyledTitle1>
+            <form onSubmit={handleSubmit(submit)} noValidate>
+                <InputField
+                    placeholder="E-mail"
+                    type="email"
+                    errorMessage={errors.email?.message}
+                    {...register("email")} 
+                    className="input1"/>
+
+                <InputField
+                    placeholder="Senha"
+                    type="password"
+                    errorMessage={errors.password?.message}
+                    {...register("password")} 
+                    className="input2"/>
+                    
+                <StyledButton>Entrar</StyledButton>
             </form>
+            <SpanRegisterLoginStyle>
+                <StyledText text="paragraph">Não possui cadastro?</StyledText>
+                <Link to="/RegisterPage" style={{ textDecoration: 'none' }}>
+                    <PRegisterLoginStyle>Cadastre-se</PRegisterLoginStyle>
+                </Link>
+            </SpanRegisterLoginStyle>
         </SectionLoginStyle>
     )
 }

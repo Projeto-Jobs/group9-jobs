@@ -1,3 +1,4 @@
+import { AiOutlineArrowLeft } from "react-icons/ai"
 import { CreateVacancyForm } from "../../components/CreateVacancyForm"
 import { StyledTitle1 } from "../../styles/Typography"
 import { StyledCreateVacancyPage } from "./styles"
@@ -7,7 +8,7 @@ export const CreateVacancyPage = () => {
     return (
         <StyledCreateVacancyPage>
             <Link to="/AdminPage">
-              <span id="return">voltar</span>
+              <span id="return"><AiOutlineArrowLeft/> voltar</span>
             </Link>
             <div>
                 <StyledTitle1 color="blue">Criar vaga</StyledTitle1>

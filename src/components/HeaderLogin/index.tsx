@@ -1,19 +1,19 @@
 import { useContext } from "react"
 import { LoginContext } from "../../providers/LoginContext"
 import jobs from "../../assets/jobs.svg"
-import { ButtonCompanyStyle, ButtonLeaveStyle, HeaderLoginStyle } from "./style"
-
+import { ButtonCompanyStyle, HeaderLoginStyle } from "./style"
+import { StyledOutLineButton } from "../../styles/Global"
 
 export const HeaderLogin = () =>{
 
-    const {userLogout} = useContext(LoginContext)
+    const {initials, userLogout} = useContext(LoginContext)
 
     return(
         <HeaderLoginStyle>
             <img src={jobs} alt="Logo da empresa" />
             <div>
-                <ButtonCompanyStyle>KE</ButtonCompanyStyle>
-                <ButtonLeaveStyle onClick={userLogout}>Sair</ButtonLeaveStyle>
+                <ButtonCompanyStyle>{initials}</ButtonCompanyStyle>
+                <StyledOutLineButton id="leave-button" onClick={userLogout}>Sair</StyledOutLineButton>
             </div>
         </HeaderLoginStyle>
     )

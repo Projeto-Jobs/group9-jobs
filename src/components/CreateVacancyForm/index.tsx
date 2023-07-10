@@ -6,14 +6,15 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { validationVacancySchema } from "./validationCreateVacancyForm"
 import { z } from "zod"
 import { useContext } from "react"
-import { AdminContext } from "../../providers/AdminContext"
+import plusBall from "../../assets/Plus+Ball.svg"
+import { AdmListContext } from "../../providers/AdmListContext"
 
 
 type TCreateVacancy = z.infer<typeof validationVacancySchema>
 
 export const CreateVacancyForm = () => {
 
-    const {newVacancy} = useContext(AdminContext)
+    const {newVacancy} = useContext(AdmListContext)
     const {register, handleSubmit, formState: {errors} } = useForm<TCreateVacancy>({
         resolver: zodResolver(validationVacancySchema)
     })
@@ -28,19 +29,22 @@ export const CreateVacancyForm = () => {
                 {...register("position")} 
                 type="text"
                 placeholder="Cargo" 
-                errorMessage={errors.position?.message}/>
+                errorMessage={errors.position?.message}
+                className="input1"/>
             <InputField 
                 {...register("sallary")}
                 type="number"
                 placeholder="Salário (Opcional)"
-                errorMessage={errors.sallary?.message}/>
+                errorMessage={errors.sallary?.message}
+                className="input2"/>
             <div>
                 <textarea 
                     {...register("description")}
-                    placeholder="Descrição da vaga" />
+                    placeholder="Descrição da vaga" 
+                    className="input3"/>
                 <span>{errors.description?.message}</span>
             </div>
-            <StyledButton><img src="../../../src/assets/Plus+Ball.svg" alt="plus insede a ball" /> Criar vaga</StyledButton>
+            <StyledButton><img src={plusBall} alt="plus insede a ball" /> Criar vaga</StyledButton>
         </StyledVacancyForm>
     )
 }

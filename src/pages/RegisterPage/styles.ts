@@ -18,6 +18,13 @@ export const StyledRegisterPage = styled.div`
         font-weight: 700;
         color: var(--color-blue);
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        animation: lefAppear 2s ease;
+        svg{
+            transform: scale(1.5);
+        }
     }
 
     > div {
@@ -28,6 +35,7 @@ export const StyledRegisterPage = styled.div`
         gap: 20px;
 
         h1 {
+            animation: appears 2s ease;
             color: var(--color-blue);
             text-align: center;
             margin-top: 90px;

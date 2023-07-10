@@ -41,19 +41,22 @@ export const RegisterForm = () => {
                 {...register("name")} 
                 type="text" 
                 placeholder="Nome da empresa"
-                errorMessage={errors.name?.message}/>
+                errorMessage={errors.name?.message}
+                className="input1"/>
 
             <InputField 
                 {...register("email")} 
                 type="email" 
                 placeholder="E-mail"
-                errorMessage={errors.email?.message}/>
+                errorMessage={errors.email?.message}
+                className="input2"/>
 
             <InputField 
                 {...register("password")} 
                 type={showPassword ? 'text':'password'} 
                 placeholder="Senha"
-                errorMessage={errors.password?.message}>
+                errorMessage={errors.password?.message}
+                className="input3">
                 {
                     showPassword
                         ? <AiFillEyeInvisible onClick={IsShowingPass} />
@@ -65,7 +68,8 @@ export const RegisterForm = () => {
                 {...register("confirm")} 
                 type={showConfirm ? 'text':'password'} 
                 placeholder="Confirmar senha"
-                errorMessage={errors.confirm?.message}>
+                errorMessage={errors.confirm?.message}
+                className="input4">
                 {
                     showConfirm
                         ? <AiFillEyeInvisible onClick={IsShowingConfi} />

@@ -1,47 +1,65 @@
-import { ChangeEvent, useContext, useState } from "react"
-import { AdmListContext, IAdmJob } from "../../providers/AdmListContext"
+import { useContext } from "react";
+import { AdmListContext, IAdmJob } from "../../providers/AdmListContext";
+import { InputField } from "../InputField";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { SchemaEdit } from "./editSchema";
+import { FormStyled } from "./styledForm";
+import { StyledTitle2, StyledTitle3 } from "../../styles/Typography";
+import { StyledButton } from "../../styles/Global";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
-export const EditVacancys = ({ formData, onSubmit }: { formData: IAdmJob; onSubmit: (data: IAdmJob) => void }) => {
+type TEdit = z.infer<typeof SchemaEdit>;
 
-    const { editVacanciesJob } = useContext(AdmListContext)
+export const EditVacancys = () => {
+  const { editVacanciesJob, selectedJob } = useContext(AdmListContext);
 
-    const [editData, setEditData] = useState<IAdmJob>(formData)
+  const { register, handleSubmit } = useForm<TEdit>();
 
-    const inputs = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setEditData((preventData) => ({
-          ...preventData,
-          [name]: value,
-        }))
-      }
+  const submit = (formData: TEdit) => {
+    const userId = Number(localStorage.getItem("@Jobs:userId"));
+    const { id, ...data } = formData;
+    const updatedData: IAdmJob = {
+      userId: userId,
+      id: id,
+      ...data,
+    };
+    editVacanciesJob(updatedData);
+  };
 
-      const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        editVacanciesJob(editData);
-        onSubmit(editData);
-      }
-
-    return (
+  return (
+    <FormStyled>
+      <Link to="/">
+        <StyledTitle3 color="blue" className="return">
+          {" "}
+          <AiOutlineArrowLeft /> Voltar
+        </StyledTitle3>
+      </Link>
+      <StyledTitle2 color="blue">Editando: {selectedJob?.position} </StyledTitle2>
+      <form onSubmit={handleSubmit(submit)}>
         <div>
-            <h2>Editando: </h2>
-            <form onSubmit={handleSubmit} >
-                <input type="text" 
-                name="position" 
-                value={editData.position}
-                onChange={inputs}
-                 />
-                <input type="number" 
-                name="sallary" 
-                value={editData.sallary}
-                onChange={inputs}
-                 />
-                <textarea 
-                name="" 
-                id=""></textarea>
-                <button type="submit">Atualizar</button>
-
-
-            </form>
+          <div className="input">
+            <InputField
+              type="text"
+              placeholder="Cargo"
+              {...register("position")}
+            />
+            <InputField
+              type="number"
+              placeholder="Salário (opcional)"
+              {...register("sallary")}
+            />
+          </div>
+          <div className="textarea">
+            <textarea
+              placeholder="Descrição"
+              {...register("description")}
+            ></textarea>
+          </div>
         </div>
-    )
-}
+        <StyledButton type="submit">Atualizar</StyledButton>
+      </form>
+    </FormStyled>
+  );
+};
