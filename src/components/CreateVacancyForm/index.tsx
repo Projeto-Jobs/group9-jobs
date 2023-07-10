@@ -6,15 +6,15 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { validationVacancySchema } from "./validationCreateVacancyForm"
 import { z } from "zod"
 import { useContext } from "react"
-import { AdminContext } from "../../providers/AdminContext"
 import plusBall from "../../assets/Plus+Ball.svg"
+import { AdmListContext } from "../../providers/AdmListContext"
 
 
 type TCreateVacancy = z.infer<typeof validationVacancySchema>
 
 export const CreateVacancyForm = () => {
 
-    const {newVacancy} = useContext(AdminContext)
+    const {newVacancy} = useContext(AdmListContext)
     const {register, handleSubmit, formState: {errors} } = useForm<TCreateVacancy>({
         resolver: zodResolver(validationVacancySchema)
     })

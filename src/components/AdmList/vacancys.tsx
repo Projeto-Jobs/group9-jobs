@@ -19,7 +19,6 @@ export const ListVacancys = () => {
 
     const handleClickJob = (job: IAdmJob) => {
        teste(job)
-        console.log(job)
     }
 
     return (

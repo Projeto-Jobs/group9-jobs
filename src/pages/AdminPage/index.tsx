@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { Listapplications } from "../../components/AdmList/aplic"
 import { ListVacancys } from "../../components/AdmList/vacancys"
 import { AdmStyled } from "./styles"
@@ -6,10 +6,11 @@ import { Link } from "react-router-dom"
 import { LoginContext } from "../../providers/LoginContext"
 import { StyledText, StyledTitle1} from "../../styles/Typography"
 import { StyledButton } from "../../styles/Global"
+import { AdmListContext } from "../../providers/AdmListContext"
 
 export const Administration = () => {
 
-   const [option, setOpetion] = useState("")
+   const { option, setOpetion } = useContext(AdmListContext)
    const {login} = useContext(LoginContext) 
 
    const OptionClick = (click: string) => {
