@@ -37,6 +37,7 @@ export const EditVacancys = () => {
       </Link>
       <StyledTitle2 color= "blue" >Editando: </StyledTitle2>
       <form onSubmit={handleSubmit(submit)} >
+        
        <div className="input">
           <InputField
             type="text"
@@ -54,8 +55,9 @@ export const EditVacancys = () => {
             {...register("description")}>
           </textarea>
         </div>
-      </form>
         <StyledButton type="submit">Atualizar</StyledButton>
+      </form>
+      
     </FormStyled>
   )
 }
