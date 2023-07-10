@@ -101,7 +101,6 @@ export const AdmListProvider = ({children}: IAdmJobList) =>{
                     position:formData.position,
                     sallary:Number(formData.sallary),
                     description:formData.description,
-                    userId: formData.userId,
                    }, {
                        headers: {
                            Authorization: `Bearer ${token}`,

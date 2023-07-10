@@ -22,7 +22,7 @@ export const EditVacancys = () => {
     const userId = Number(localStorage.getItem("@Jobs:userId"))
     const { id, ...data } = formData;
     const updatedData: IAdmJob = {
-      userId: userId,
+      userId,
       id: id,
       ...data,
     }

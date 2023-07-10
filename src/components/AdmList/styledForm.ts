@@ -20,8 +20,12 @@ export const FormStyled = styled.div`
         .container{
             display: flex;
             width: 100%;
+            flex-direction:column;
             gap: 45px;
-            
+            > div {
+                display: flex;
+                gap: 45px;
+            }
         }
 
         .input{

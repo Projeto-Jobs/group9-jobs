@@ -74,15 +74,23 @@ export const StyledGlobalStyle = createGlobalStyle`
         opacity: 1;
         }
     }
+    @keyframes minRightAppear{
+        from{
+        opacity: 0;
+        transform: translateX(150px);
+        }
+        to{
+        opacity: 1;
+        }
+    }
 
     @keyframes rigthAppear{
         0% {
-        transform: scale(0.3);
+        transform: translateX(850px);
         opacity: 0;
         }
         50% {
         transform: scale(1);
-    
         opacity: 1;
         }
     }
