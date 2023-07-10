@@ -22,7 +22,7 @@ export const EditVacancys = () => {
     const userId = Number(localStorage.getItem("@Jobs:userId"))
     const { id, ...data } = formData;
     const updatedData: IAdmJob = {
-      userId,
+      userId: userId,
       id: id,
       ...data,
     }
@@ -33,29 +33,31 @@ export const EditVacancys = () => {
   return (
     <FormStyled>
       <Link to="/">
-      <StyledTitle3 color= "blue" className="return"> <AiOutlineArrowLeft/> Voltar</StyledTitle3>
+        <StyledTitle3 color="blue" className="return"> <AiOutlineArrowLeft /> Voltar</StyledTitle3>
       </Link>
-      <StyledTitle2 color= "blue" >Editando: </StyledTitle2>
+      <StyledTitle2 color="blue" >Editando: </StyledTitle2>
       <form onSubmit={handleSubmit(submit)} >
-       <div className="input">
-          <InputField
-            type="text"
-            placeholder="Cargo"
-            {...register("position")}
-          />
-          <InputField type="number"
-            placeholder="Salário (opcional)"
-            {...register("sallary")}
-          />
+        <div className="container">
+          <div className="input">
+            <InputField
+              type="text"
+              placeholder="Cargo"
+              {...register("position")}
+            />
+            <InputField type="number"
+              placeholder="Salário (opcional)"
+              {...register("sallary")}
+            />
+          </div>
+          <div className="textarea">
+            <textarea
+              placeholder="Descrição"
+              {...register("description")}>
+            </textarea>
+          </div>
         </div>
-        <div className="textarea">
-          <textarea
-            placeholder="Descrição"
-            {...register("description")}>
-          </textarea>
-        </div>
-      </form>
         <StyledButton type="submit">Atualizar</StyledButton>
+      </form>
     </FormStyled>
   )
 }

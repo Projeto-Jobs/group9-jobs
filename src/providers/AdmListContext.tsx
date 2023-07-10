@@ -9,12 +9,25 @@ export interface IAdmJob{
     description: string;
 }
 
+interface IAdmApplications{
+    id: number;
+    jobId: number;
+    userId: number;
+    name: string;
+    email: string;
+    linkedin: string;
+    job: IAdmJob;
+}
+
 interface IAdmJobList{
     children: React.ReactNode
 }
 
+
+
 interface IAdmJobListContext{
     admJob: IAdmJob[];
+    admApplication: IAdmApplications[]
     deleteVacancy: (jobId: number) => void;
     editVacanciesJob: (edit: IAdmJob) => void;
     teste: (job:IAdmJob) => void;
@@ -27,6 +40,8 @@ export const AdmListProvider = ({children}: IAdmJobList) =>{
     const token = localStorage.getItem("@Jobs:token")
 
     const [ admJob, setAdmJob] = useState<IAdmJob[]>([])
+
+    const [ admApplication, setAdmApplication] = useState<IAdmApplications[]>([])
 
     const [selectedJob, setSelectedJob] = useState<IAdmJob | undefined>(undefined);
    
@@ -44,6 +59,20 @@ export const AdmListProvider = ({children}: IAdmJobList) =>{
             }
         }
         loadAdmJobs()
+
+        const loadAdmApplications = async () =>{
+            try {
+                const { data } = await api.get(`/applications?userId=${userId}&_expand=job`,{
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                setAdmApplication(data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        loadAdmApplications()
     },[])
     
     const deleteVacancy = async (jobId: number) => {
@@ -62,9 +91,9 @@ export const AdmListProvider = ({children}: IAdmJobList) =>{
 
     const teste = (job: IAdmJob) =>{
         setSelectedJob({...job})
+     
     }
 
-    console.log(selectedJob)
      const editVacanciesJob = async (formData: IAdmJob) => {
 
             try {
@@ -72,6 +101,7 @@ export const AdmListProvider = ({children}: IAdmJobList) =>{
                     position:formData.position,
                     sallary:Number(formData.sallary),
                     description:formData.description,
+                    userId: formData.userId,
                    }, {
                        headers: {
                            Authorization: `Bearer ${token}`,
@@ -87,7 +117,7 @@ export const AdmListProvider = ({children}: IAdmJobList) =>{
     }
 
     return(
-        <AdmListContext.Provider value={{ admJob, deleteVacancy, editVacanciesJob, teste}}>
+        <AdmListContext.Provider value={{ admJob, deleteVacancy, editVacanciesJob, teste, admApplication}}>
             {children}
         </AdmListContext.Provider>
     )

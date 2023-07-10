@@ -17,7 +17,7 @@ export const FormStyled = styled.div`
             text-decoration: none;
         }
     }
-        form{
+        .container{
             display: flex;
             width: 100%;
             gap: 45px;
@@ -37,6 +37,7 @@ export const FormStyled = styled.div`
         button{
             display: flex;
             margin: 0 auto;
+            margin-top: 20px;
         }
 
         textarea{
