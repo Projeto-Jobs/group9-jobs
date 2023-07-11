@@ -95,6 +95,10 @@ export const LoginProvider = ({children}: ILoginProviderProps) =>{
         localStorage.removeItem("@Jobs:userId")
 
         setToken(null)
+        navigate("/")
+        toast.success("Logout concluído!")
+    }
+    useEffect(() => {
         const reloadJobs = async () => {
             try {
               const { data } = await api.get(`/jobs?_expand=user`);
@@ -104,9 +108,8 @@ export const LoginProvider = ({children}: ILoginProviderProps) =>{
             }
           }
           reloadJobs()
-        navigate("/")
-        toast.success("Logout concluído!")
-    }
+
+    })
 
     return(
         <LoginContext.Provider value={ {login, initials, token, userLogin, userLogout} }>

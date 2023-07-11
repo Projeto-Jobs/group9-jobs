@@ -61,13 +61,11 @@ export const LiVApplyStyle = styled.li`
       display: flex;
       align-items: center;
       gap: 20px;
-      img {
          transition: all.3s;
          cursor: pointer;
          &:hover{
             transform: scale(1.35);
          }
-      }
    }
 `
 

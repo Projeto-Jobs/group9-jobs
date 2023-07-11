@@ -74,6 +74,7 @@ export const AdmListProvider = ({ children }: IAdmJobList) => {
                         Authorization: `Bearer ${token}`
                     }
                 })
+                
                 setAdmApplication(data)
             } catch (error) {
 
@@ -128,30 +129,29 @@ export const AdmListProvider = ({ children }: IAdmJobList) => {
     const editVacanciesJob = async (formData: IAdmJob) => {
 
         try {
-            await api.put(`/jobs/${selectedJob?.id}`, {
-                position: formData.position,
-                sallary: Number(formData.sallary),
-                description: formData.description,
-                userId: formData.userId,
-            }, {
+            const {data} = await api.put(`/jobs/${selectedJob?.id}`, formData,
+             {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             })
-            const updatedJobs = admJob.map((job) =>
-                job.id === selectedJob?.id ? { ...selectedJob, ...formData } : job);
-            setAdmJob(updatedJobs)
 
-            const updatedApplications = admApplication.map((application) =>
-                application.jobId === selectedJob?.id ? { ...application, ...formData } : application
-            )
-            setAdmApplication(updatedApplications);
+            const filterJob = admJob.filter(item => item.id !== selectedJob?.id);
+            setAdmJob([...filterJob, data])
+         
+            const responseApplication = await api.get(`/applications?userId=${userId}&_expand=job`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            setAdmApplication(responseApplication.data);
             navigate("/AdminPage")
             setOpetion("Vagas")
             toast.success(`Alterações realizadas!`)
 
         } catch (error) {
-            console.log(error)
+            
         }
     }
 

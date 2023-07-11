@@ -8,28 +8,29 @@ import { StyledText } from "../../styles/Typography"
 export const Listapplications = () => {
 
     const { admApplication } = useContext(AdmListContext)
-    const [showButton, setShowButton] = useState(false)
-    const [showParagraph, setShowParagraph] = useState(false)
+    const [showButton, setShowButton] = useState(0)
+    const [showParagraph, setShowParagraph] = useState(0)
 
-    const modifyButton = (param: boolean) => {
-        setShowButton(param)
-        setShowParagraph(param)
+    const modifyButton = (id: number) => {
+        setShowButton(id)
+        setShowParagraph(id)
      }
 
+     
     return (
         <ul>
             {admApplication.map((application) => (
                 <LiVApplyStyle key={application.id}>
                     <div className="container-user">
                         <H3VacancyStyle>{application.name} - {application.job.position}</H3VacancyStyle>
-                        {
-                            showButton
-                                ? <figure onClick={() => modifyButton(false)}><img src={minus} alt="minus"/></figure>
-                                : <figure onClick={() => modifyButton(true)}><img src={plus} alt="plus"  /></figure>
-                        }
+                        {showButton !== application.id ? (
+                            <figure onClick={() => modifyButton(application.id)}><img src={plus} alt="" /></figure>
+                        ) : (
+                            <figure onClick={() => modifyButton(0)}><img src={minus} alt="" /></figure>
+                        )}
                     </div>
                     <div className="description-container">
-                        {showParagraph && (
+                        {showParagraph == application.id && (
                             <div>
                                 <StyledText text="paragraph">Detalhes da candidatura: </StyledText>
                                 <StyledText text="paragraph">E-mail: <strong>{application.email}</strong></StyledText>
